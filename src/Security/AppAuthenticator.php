@@ -34,7 +34,21 @@ class AppAuthenticator extends AbstractLoginFormAuthenticator
 
         return new Passport(
             new UserBadge($username),
-            new PasswordCredentials($request->request->get('password', '')),
+            new \Symfony\Component\Security\Http\Authenticator\Passport\Credentials\CustomCredentials(
+                function ($credentials, \Symfony\Component\Security\Core\User\UserInterface $user) {
+                    // Check if it's an MD5 hash first (legacy)
+                    if (md5($credentials) === $user->getPassword()) {
+                        return true;
+                    }
+                    // Check for plain text (some users might have it)
+                    if ($credentials === $user->getPassword()) {
+                        return true;
+                    }
+                    // Otherwise try modern bcrypt/argon2 (if password_verify works)
+                    return password_verify($credentials, $user->getPassword());
+                },
+                $request->request->get('password', '')
+            ),
             [
                 new CsrfTokenBadge('authenticate', $request->request->get('_csrf_token')),
                 new RememberMeBadge(),

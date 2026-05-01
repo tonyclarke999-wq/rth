@@ -36,6 +36,9 @@ $g_timer->mark_time( "Finished connect to " . DB_NAME . " database" );
 # ----------------------------------------------------------------------
 function db_query( $db, $query_string ) {
 
+    if (preg_match('/LIMIT\s+(\d+)\s*,\s*(\d+)/i', $query_string)) {
+        $query_string = preg_replace('/LIMIT\s+(\d+)\s*,\s*(\d+)/i', 'LIMIT $2 OFFSET $1', $query_string);
+    }
     $rs = $db->Execute( $query_string );
     return $rs;
 
@@ -89,6 +92,9 @@ function db_fetch_array( $db, $record_set, $record_count=null ) {
 # ----------------------------------------------------------------------
 function db_get_one( $db, $query_string ) {
 
+    if (preg_match('/LIMIT\s+(\d+)\s*,\s*(\d+)/i', $query_string)) {
+        $query_string = preg_replace('/LIMIT\s+(\d+)\s*,\s*(\d+)/i', 'LIMIT $2 OFFSET $1', $query_string);
+    }
     return $rs = $db->GetOne( $query_string );
 }
 
@@ -103,7 +109,7 @@ function db_rs_eof( &$rs ) {
 
 function db_get_last_autoincrement_id( $db ) {
 
-	$q = "SELECT LAST_INSERT_ID()";
+	$q = "SELECT LASTVAL()";
 
     return db_get_one( $db, $q );
 }

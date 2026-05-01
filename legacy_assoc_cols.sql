@@ -1,0 +1,9 @@
+ALTER TABLE project_user_assoc ADD COLUMN IF NOT EXISTS email_testset char(1) DEFAULT 'N';
+ALTER TABLE project_user_assoc ADD COLUMN IF NOT EXISTS email_discussion char(1) DEFAULT 'N';
+ALTER TABLE project_user_assoc ADD COLUMN IF NOT EXISTS email_new_bug char(1) DEFAULT 'N';
+ALTER TABLE project_user_assoc ADD COLUMN IF NOT EXISTS email_update_bug char(1) DEFAULT 'N';
+ALTER TABLE project_user_assoc ADD COLUMN IF NOT EXISTS email_assigned_bug char(1) DEFAULT 'N';
+ALTER TABLE project_user_assoc ADD COLUMN IF NOT EXISTS email_bugnote_bug char(1) DEFAULT 'N';
+ALTER TABLE project_user_assoc ADD COLUMN IF NOT EXISTS email_status_bug char(1) DEFAULT 'N';
+ALTER TABLE project_user_assoc ADD COLUMN IF NOT EXISTS qa_tester char(1) DEFAULT 'N';
+ALTER TABLE project_user_assoc ADD COLUMN IF NOT EXISTS ba_owner char(1) DEFAULT 'N';

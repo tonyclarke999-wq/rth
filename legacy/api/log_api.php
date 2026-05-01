@@ -24,14 +24,14 @@ function log_activity_log($page_name, $deletion, $creation, $upload, $action) {
     $current_date = date("Y-m-d H:i:s");
     $page_name = $page_name." - ".$s_project_name;
     $logs_tbl = LOGS_TBL;
-    $query = "	INSERT INTO $logs_tbl ( User,
-    									Page,
-    									TimeStamp,
-    									SessionID,
-    									Deletion,
-    									Creation,
-    									Upload,
-    									Action )
+    $query = "	INSERT INTO $logs_tbl ( \"user\",
+    									page,
+    									timestamp,
+    									sessionid,
+    									deletion,
+    									creation,
+    									upload,
+    									action )
 
     			VALUES (	'$s_username',
     						'$page_name',

@@ -352,7 +352,7 @@ define('BUG_FILE_TBL', 'bugfile');
 define('BUG_HISTORY_TBL', 'bughistory');
 define('BUG_MONITOR_TBL', 'bugmonitor');
 define('BUG_NOTE_TBL', 'bugnote');
-#define('BUG_TEST_ASSOC_TBL', 'BugTestAssoc');
+#define('BUG_TEST_ASSOC_TBL', 'bugtestassoc');
 define('DISC_TBL', 'discussion');
 define('DISC_POST_TBL', 'discussionpost');
 define('ENVIRONMENT_TBL', 'testenvironment'); # needed???
@@ -409,9 +409,9 @@ define('PROJECT_ID', 'project_id'); # exists in every table
 # -------------------------------------------
 # AREA_TESTED TABLE - FIELDS
 # -------------------------------------------
-define('AREA_TESTED_ID', 'AreaTestedID');
+define('AREA_TESTED_ID', 'areatestedid');
 define('AREA_TESTED_PROJ_ID', 'project_id');
-define('AREA_TESTED_NAME', 'AreaTestedName');
+define('AREA_TESTED_NAME', 'areatestedname');
 
 # -------------------------------------------
 # BUILD TABLE - FIELDS
@@ -421,45 +421,45 @@ define('BUILD_REL_ID', "ReleaseID");
 define('BUILD_NAME', "BuildName");
 define('BUILD_DATE_REC', "DateReceived");
 define('BUILD_ARCHIVE', "Archive");
-define('BUILD_DESCRIPTION', 'Description');
+define('BUILD_DESCRIPTION', 'description');
 
 # -------------------------------------------
 # DISC TABLE - FIELDS
 # -------------------------------------------
-define('DISC_ID', 'DiscussionID');
-define('DISC_REQ_ID', 'ReqID');
-define('DISC_DISCUSSION', 'Discussion');
-define('DISC_STATUS', 'Status');
-define('DISC_SUBJECT', 'DiscSubject');
-define('DISC_AUTHOR', 'Author');
-define('DISC_ASSIGN_TO', 'AssignTo');
-define('DISC_DATE', 'Date');
+define('DISC_ID', 'discussionid');
+define('DISC_REQ_ID', 'reqid');
+define('DISC_DISCUSSION', 'discussion');
+define('DISC_STATUS', 'status');
+define('DISC_SUBJECT', 'discsubject');
+define('DISC_AUTHOR', 'author');
+define('DISC_ASSIGN_TO', 'assignto');
+define('DISC_DATE', 'date');
 
 
 # -------------------------------------------
 # POST TABLE - FIELDS
 # -------------------------------------------
-define('POST_ID', 'PostID');
-define('POST_DISCUSSION_ID', 'DiscussionID');
-define('POST_MESSAGE', 'Post');
-define('POST_AUTHOR', 'Author');
-define('POST_DATE', 'Date');
+define('POST_ID', 'postid');
+define('POST_DISCUSSION_ID', 'discussionid');
+define('POST_MESSAGE', 'post');
+define('POST_AUTHOR', 'author');
+define('POST_DATE', 'date');
 
 # -------------------------------------------
 # ENVIRONMENT TABLE - FIELDS
 # -------------------------------------------
-define('ENVIRONMENT_ID', 'EnvironmentID');
-define('ENVIRONMENT_NAME', 'EnvironmentName');
-define('ENVIRONMENT_PROJ_ID', 'ProjectID');
+define('ENVIRONMENT_ID', 'environmentid');
+define('ENVIRONMENT_NAME', 'environmentname');
+define('ENVIRONMENT_PROJ_ID', 'projectid');
 
 # -------------------------------------------
 # FEEDBACK TABLE - FIELDS
 # -------------------------------------------
-define('FEEDBACK_FEEDBACK_ID', 'FeedbackID');
-define('FEEDBACK_AUTHOR', 'Author');
-define('FEEDBACK_COMMENT', 'Comment');
-define('FEEDBACK_PROJECT', 'Project');
-define('FEEDBACK_TIMESTAMP', 'TimeStamp');
+define('FEEDBACK_FEEDBACK_ID', 'feedbackid');
+define('FEEDBACK_AUTHOR', 'author');
+define('FEEDBACK_COMMENT', 'comment');
+define('FEEDBACK_PROJECT', 'project');
+define('FEEDBACK_TIMESTAMP', 'timestamp');
 
 # -------------------------------------------
 # FIELD TABLE - FIELDS
@@ -484,223 +484,223 @@ define('FUNCTION_DESC', 'description');
 # -------------------------------------------
 # GUI_CHECK TABLE - FIELDS
 # -------------------------------------------
-define('GUI_CHECK_ID', 'GuiCheckID');
-define('GUI_CHECK_NUMBER', 'GuiCheckNumber');
-define('GUI_CHECK_ICON_CODE', 'IconCode');
-define('GUI_CHECK_TS_UNIQUE_RUN_ID', 'TS_UniqueRunID');
-define('GUI_CHECK_OBJECT_NAME', 'ObjectName');
-define('GUI_CHECK_EXPECTED_VALUE', 'ExpectedValue');
-define('GUI_CHECK_ACTUAL_VALUE', 'ActualValue');
-define('GUI_CHECK_STATUS', 'Status');
+define('GUI_CHECK_ID', 'guicheckid');
+define('GUI_CHECK_NUMBER', 'guichecknumber');
+define('GUI_CHECK_ICON_CODE', 'iconcode');
+define('GUI_CHECK_TS_UNIQUE_RUN_ID', 'ts_uniquerunid');
+define('GUI_CHECK_OBJECT_NAME', 'objectname');
+define('GUI_CHECK_EXPECTED_VALUE', 'expectedvalue');
+define('GUI_CHECK_ACTUAL_VALUE', 'actualvalue');
+define('GUI_CHECK_STATUS', 'status');
 
 # -------------------------------------------
 # INDIV_RUN_DOCS TABLE - FIELDS
 # -------------------------------------------
-define('INDIV_RUN_DOCS_UNIQUE_ID', 'UniqueDocID');
-define('INDIV_RUN_DOCS_TS_UNIQUE_RUN_ID', 'TS_UniqueRunID');
-define('INDIV_RUN_DOCS_TIMESTAMP', 'TimeStamp');
-define('INDIV_RUN_DOCS_UPLOADED_BY', 'UploadedBy');
-define('INDIV_RUN_DOCS_FILE_NAME', 'FileName');
-define('INDIV_RUN_DOCS_DISPLAY_NAME', 'DisplayName');
-define('INDIV_RUN_DOCS_COMMENTS', 'Comments');
-define('INDIV_RUN_DOCS_LINK', 'Link');
+define('INDIV_RUN_DOCS_UNIQUE_ID', 'uniquedocid');
+define('INDIV_RUN_DOCS_TS_UNIQUE_RUN_ID', 'ts_uniquerunid');
+define('INDIV_RUN_DOCS_TIMESTAMP', 'timestamp');
+define('INDIV_RUN_DOCS_UPLOADED_BY', 'uploadedby');
+define('INDIV_RUN_DOCS_FILE_NAME', 'filename');
+define('INDIV_RUN_DOCS_DISPLAY_NAME', 'displayname');
+define('INDIV_RUN_DOCS_COMMENTS', 'comments');
+define('INDIV_RUN_DOCS_LINK', 'link');
 
 # -------------------------------------------
 # ISSUES TABLE - FIELDS
 # -------------------------------------------
 define('ISSUES_ID', 'id');
-define('ISSUES_NAME', 'Name');
-define('ISSUES_PRIORITY', 'Priority');
-define('ISSUES_STATUS', 'Status');
-define('ISSUES_DETAILS', 'Details');
-define('ISSUES_OWNER', 'Owner');
-define('ISSUES_TIMESTAMP', 'Timestamp');
-define('ISSUES_TYPE', 'Type');
+define('ISSUES_NAME', 'name');
+define('ISSUES_PRIORITY', 'priority');
+define('ISSUES_STATUS', 'status');
+define('ISSUES_DETAILS', 'details');
+define('ISSUES_OWNER', 'owner');
+define('ISSUES_TIMESTAMP', 'timestamp');
+define('ISSUES_TYPE', 'type');
 
 # -------------------------------------------
 # LOGS TABLE - FIELDS
 # -------------------------------------------
-define('LOGS_LOG_ID', 'LogID');
-define('LOGS_SESSION_ID', 'SessionID');
-define('LOGS_DELETION', 'Deletion');
-define('LOGS_CREATION', 'Creation');
-define('LOGS_UPLOAD', 'Upload');
-define('LOGS_TIMESTAMP', 'TimeStamp');
-define('LOGS_USER', 'User');
-define('LOGS_PAGE', 'Page');
-define('LOGS_ACTION', 'Action');
+define('LOGS_LOG_ID', 'logid');
+define('LOGS_SESSION_ID', 'sessionid');
+define('LOGS_DELETION', 'deletion');
+define('LOGS_CREATION', 'creation');
+define('LOGS_UPLOAD', 'upload');
+define('LOGS_TIMESTAMP', 'timestamp');
+define('LOGS_USER', 'user');
+define('LOGS_PAGE', 'page');
+define('LOGS_ACTION', 'action');
 
 # -------------------------------------------
 # MACH_TABLE - FIELDS
 # -------------------------------------------
-define('MACH_ID', 'MachineID');
-define('MACH_PROJ_ID', 'ProjectID');
-define('MACH_NAME', 'MachineName');
-define('MACH_LOCATION', 'MachineLocation');
-define('MACH_IP_ADDRESS', 'MachineIPAddress');
+define('MACH_ID', 'machineid');
+define('MACH_PROJ_ID', 'projectid');
+define('MACH_NAME', 'machinename');
+define('MACH_LOCATION', 'machinelocation');
+define('MACH_IP_ADDRESS', 'machineipaddress');
 
 # -------------------------------------------
 # MAN_DOC_TYPE TABLE - FIELDS
 # -------------------------------------------
-define('MAN_DOC_TYPE_ID', 'ManualDocTypeID');
-define('MAN_DOC_TYPE_NAME', 'ManualDocTypeName');
-define('MAN_DOC_TYPE_PROJ_ID', 'ProjectID');
+define('MAN_DOC_TYPE_ID', 'manualdoctypeid');
+define('MAN_DOC_TYPE_NAME', 'manualdoctypename');
+define('MAN_DOC_TYPE_PROJ_ID', 'projectid');
 
 # -------------------------------------------
 # MAN_TD_TBL TABLE - FIELDS
 # -------------------------------------------
-define('MAN_TD_MANUAL_TEST_ID', 'ManualTestID');
-define('MAN_TD_TEST_ID', 'TestID');
-define('MAN_TD_DISPLAY_NAME', 'DisplayName');
+define('MAN_TD_MANUAL_TEST_ID', 'manualtestid');
+define('MAN_TD_TEST_ID', 'testid');
+define('MAN_TD_DISPLAY_NAME', 'displayname');
 
 # -------------------------------------------
 # MAN_TD_VER TABLE - FIELDS
 # -------------------------------------------
-define('MAN_TD_VER_ID', 'VersionID');
-define('MAN_TD_VER_MANUAL_TEST_ID', 'ManualTestID');
-define('MAN_TD_VER_VERSION', 'Version');
-define('MAN_TD_VER_TIME_STAMP', 'TimeStamp');
-define('MAN_TD_VER_UPLOADED_BY', 'UploadedBy');
-define('MAN_TD_VER_FILENAME', 'FileName');
-define('MAN_TEST_DOCS_VERS_COMMENTS', 'Comments');
-define('MAN_TEST_DOCS_VERS_MANUAL_DOC_TYPE_NAME', 'ManualDocTypeName');
+define('MAN_TD_VER_ID', 'versionid');
+define('MAN_TD_VER_MANUAL_TEST_ID', 'manualtestid');
+define('MAN_TD_VER_VERSION', 'version');
+define('MAN_TD_VER_TIME_STAMP', 'timestamp');
+define('MAN_TD_VER_UPLOADED_BY', 'uploadedby');
+define('MAN_TD_VER_FILENAME', 'filename');
+define('MAN_TEST_DOCS_VERS_COMMENTS', 'comments');
+define('MAN_TEST_DOCS_VERS_MANUAL_DOC_TYPE_NAME', 'manualdoctypename');
 
 # -------------------------------------------
 # POST TABLE - FIELDS
 # -------------------------------------------
-define('NEWS_ID', 'NewsID');
+define('NEWS_ID', 'newsid');
 define('NEWS_PROJECT_ID', 'project_id');
-define('NEWS_SUBJECT', 'Subject');
-define('NEWS_BODY', 'Body');
-define('NEWS_MODIFIED', 'LastModified');
-define('NEWS_POSTER', 'Poster');
-define('NEWS_DELETED', 'Deleted');
+define('NEWS_SUBJECT', 'subject');
+define('NEWS_BODY', 'body');
+define('NEWS_MODIFIED', 'lastmodified');
+define('NEWS_POSTER', 'poster');
+define('NEWS_DELETED', 'deleted');
 
 #-------------------------------------------
 # RELEASE TABLE - FIELDS
 # -------------------------------------------
-define('RELEASE_ID', 'ReleaseID');
-define('RELEASE_ARCHIVE', 'Archive');
-define('RELEASE_PLATFORM', 'Platform');
-define('RELEASE_NAME', 'ReleaseName');
-define('RELEASE_DATE_RECEIVED', 'DateReceived');
-define('RELEASE_QA_SIGNOFF', 'QASignoff');
-define('RELEASE_BA_SIGNOFF', 'BASignoff');
-define('RELEASE_QA_SIGNOFF_DATE', 'QASignoffDate');
-define('RELEASE_BA_SIGNOFF_DATE', 'BASignoffDate');
-define('RELEASE_QA_SIGNOFF_BY', 'QASignoffBy');
-define('RELEASE_BA_SIGNOFF_BY', 'BASignoffBy');
-define('RELEASE_QA_SIGNOFF_COMMENTS', 'QASignoffComments');
-define('RELEASE_BA_SIGNOFF_COMMENTS', 'BASignoffComments');
-define('RELEASE_DESCRIPTION', 'Description');
+define('RELEASE_ID', 'releaseid');
+define('RELEASE_ARCHIVE', 'archive');
+define('RELEASE_PLATFORM', 'platform');
+define('RELEASE_NAME', 'releasename');
+define('RELEASE_DATE_RECEIVED', 'datereceived');
+define('RELEASE_QA_SIGNOFF', 'qasignoff');
+define('RELEASE_BA_SIGNOFF', 'basignoff');
+define('RELEASE_QA_SIGNOFF_DATE', 'qasignoffdate');
+define('RELEASE_BA_SIGNOFF_DATE', 'basignoffdate');
+define('RELEASE_QA_SIGNOFF_BY', 'qasignoffby');
+define('RELEASE_BA_SIGNOFF_BY', 'basignoffby');
+define('RELEASE_QA_SIGNOFF_COMMENTS', 'qasignoffcomments');
+define('RELEASE_BA_SIGNOFF_COMMENTS', 'basignoffcomments');
+define('RELEASE_DESCRIPTION', 'description');
 define('RELEASE_PROJECT_ID', 'project_id');
 
 # -------------------------------------------
 # REQ_AREA Coverage TABLE - FIELDS
 # -------------------------------------------
-define('REQ_AREA_COVERAGE_ID', 'ReqAreaCoverageID');
-define('REQ_AREA_PROJ_ID', 'ProjectID');
-define('REQ_AREA_COVERAGE', 'AreaCoverage');
+define('REQ_AREA_COVERAGE_ID', 'reqareacoverageid');
+define('REQ_AREA_PROJ_ID', 'projectid');
+define('REQ_AREA_COVERAGE', 'areacoverage');
 
 # -------------------------------------------
 # REQ_DOC_TYPE TABLE - FIELDS
 # -------------------------------------------
-define('REQ_DOC_TYPE_ID', 'ReqDocTypeID');
-define('REQ_DOC_TYPE_NAME', 'ReqDocTypeName');
-define('REQ_DOC_TYPE_ROOT_DOC', 'RootDocument');
-define('REQ_DOC_TYPE_PROJ_ID', 'ProjectID');
+define('REQ_DOC_TYPE_ID', 'reqdoctypeid');
+define('REQ_DOC_TYPE_NAME', 'reqdoctypename');
+define('REQ_DOC_TYPE_ROOT_DOC', 'rootdocument');
+define('REQ_DOC_TYPE_PROJ_ID', 'projectid');
 
 # -------------------------------------------
 # REQ_FUNCTIONALITY TABLE - FIELDS
 # -------------------------------------------
-define('REQ_FUNCT_ID', 'FunctionalityID');
-define('REQ_FUNCT_NAME', 'FunctionalityName');
-define('REQ_FUNCT_PROJ_ID', 'ProjectID');
+define('REQ_FUNCT_ID', 'functionalityid');
+define('REQ_FUNCT_NAME', 'functionalityname');
+define('REQ_FUNCT_PROJ_ID', 'projectid');
 
 # -------------------------------------------
 # REQ_FUNCTIONALITY_ASSOC TABLE - FIELDS
 # -------------------------------------------
-define('REQ_FUNCT_ASSOC_ID', 'RequirementFunctionality_AssocID');
-define('REQ_FUNCT_ASSOC_REQ_ID', 'RequirementID');
-define('REQ_FUNCT_ASSOC_FUNCT_ID', 'RequirementFunctionalityID');
+define('REQ_FUNCT_ASSOC_ID', 'requirementfunctionality_associd');
+define('REQ_FUNCT_ASSOC_REQ_ID', 'requirementid');
+define('REQ_FUNCT_ASSOC_FUNCT_ID', 'requirementfunctionalityid');
 
 # -------------------------------------------
 # REQ_NOTIFICATION TABLE - FIELDS
 # -------------------------------------------
-define('REQ_NOTIFY_ID', 'ReqNotifyID');
-define('REQ_NOTIFY_REQ_ID', 'ReqID');
-define('REQ_NOTIFY_USER_ID', 'UserID');
+define('REQ_NOTIFY_ID', 'reqnotifyid');
+define('REQ_NOTIFY_REQ_ID', 'reqid');
+define('REQ_NOTIFY_USER_ID', 'userid');
 
 # -------------------------------------------
 # REQ TABLE - FIELDS
 # -------------------------------------------
 define('REQ_PROJECT_ID', 'project_id');
-define('REQ_ID', 'ReqID');
-define('REQ_FILENAME', 'ReqName');
-define('REQ_AREA_COVERED', 'AreaCovered');
-define('REQ_TYPE', 'Type');
-define('REQ_PARENT', 'Parent');
-define('REQ_ROOT', 'RootNode');
-define('REQ_LABEL', 'Label');
-define('REQ_UNIQUE_ID', 'UniqueID');
-define('REQ_FUNCTIONALITY', 'Functionality');
-define('REQ_LOCKED', 'Locked');
-define('REQ_LOCKED_BY', 'LockedBy');
-define('REQ_LOCKED_DATE', 'LockedDate');
-define('REQ_REC_FILE', 'RecordOrFile');
-define('REQ_PRIORITY', 'Priority');
-define('REQ_LAST_UPDATED', 'LastUpdated');
+define('REQ_ID', 'reqid');
+define('REQ_FILENAME', 'reqname');
+define('REQ_AREA_COVERED', 'areacovered');
+define('REQ_TYPE', 'type');
+define('REQ_PARENT', 'parent');
+define('REQ_ROOT', 'rootnode');
+define('REQ_LABEL', 'label');
+define('REQ_UNIQUE_ID', 'uniqueid');
+define('REQ_FUNCTIONALITY', 'functionality');
+define('REQ_LOCKED', 'locked');
+define('REQ_LOCKED_BY', 'lockedby');
+define('REQ_LOCKED_DATE', 'lockeddate');
+define('REQ_REC_FILE', 'recordorfile');
+define('REQ_PRIORITY', 'priority');
+define('REQ_LAST_UPDATED', 'lastupdated');
 
 # -------------------------------------------
 # REQ_VERS_TBL - FIELDS
 # -------------------------------------------
-define('REQ_VERS_UNIQUE_ID', 'ReqVersionID');
-define('REQ_VERS_REQ_ID', 'ReqID');
+define('REQ_VERS_UNIQUE_ID', 'reqversionid');
+define('REQ_VERS_REQ_ID', 'reqid');
 define('REQ_VERS_DEFECT_ID', 'defect_id');
-define('REQ_VERS_VERSION', 'Version');
-define('REQ_VERS_TIMESTAMP', 'TimeStamp');
-define('REQ_VERS_UPLOADED_BY', 'Author');
-define('REQ_VERS_AUTHOR', 'Author');
-define('REQ_VERS_FILENAME', 'FileName');
-define('REQ_VERS_COMMENTS', 'Comments');
-define('REQ_VERS_STATUS', 'Status');
-define('REQ_VERS_SCHEDULED_RELEASE_IMP', 'Scheduled_Release_Implementation');
-define('REQ_VERS_SCHEDULED_BUILD_IMP', 'Scheduled_Build_Implementation');
-define('REQ_VERS_ACTUAL_RELEASE_IMP', 'Actual_Release_Implementation');
-define('REQ_VERS_ACTUAL_BUILD_IMP', 'Actual_Build_Implementation');
-define('REQ_VERS_ASSIGN_RELEASE', 'AssignToRelease');
-define('REQ_VERS_ASSIGNED_TO', 'AssignedTo');
-define('REQ_VERS_DETAIL', 'Detail');
-define('REQ_VERS_LATEST', 'Latest');
-define('REQ_VERS_REASON_CHANGE', 'ReasonForChange');
-define('REQ_VERS_LAST_UPDATED', 'LastUpdated');
-define('REQ_VERS_LAST_UPDATED_BY', 'LastUpdatedBy');
+define('REQ_VERS_VERSION', 'version');
+define('REQ_VERS_TIMESTAMP', 'timestamp');
+define('REQ_VERS_UPLOADED_BY', 'author');
+define('REQ_VERS_AUTHOR', 'author');
+define('REQ_VERS_FILENAME', 'filename');
+define('REQ_VERS_COMMENTS', 'comments');
+define('REQ_VERS_STATUS', 'status');
+define('REQ_VERS_SCHEDULED_RELEASE_IMP', 'scheduled_release_implementation');
+define('REQ_VERS_SCHEDULED_BUILD_IMP', 'scheduled_build_implementation');
+define('REQ_VERS_ACTUAL_RELEASE_IMP', 'actual_release_implementation');
+define('REQ_VERS_ACTUAL_BUILD_IMP', 'actual_build_implementation');
+define('REQ_VERS_ASSIGN_RELEASE', 'assigntorelease');
+define('REQ_VERS_ASSIGNED_TO', 'assignedto');
+define('REQ_VERS_DETAIL', 'detail');
+define('REQ_VERS_LATEST', 'latest');
+define('REQ_VERS_REASON_CHANGE', 'reasonforchange');
+define('REQ_VERS_LAST_UPDATED', 'lastupdated');
+define('REQ_VERS_LAST_UPDATED_BY', 'lastupdatedby');
 
 # -------------------------------------------
 # REQ_VERS_ASSOC_REL TABLE - FIELDS
 # -------------------------------------------
-define('REQ_VERS_ASSOC_REL_ID', 'RequirementVersion_Release_AssocID');
-define('REQ_VERS_ASSOC_REL_REQ_ID', 'RequirementVersionID');
-define('REQ_VERS_ASSOC_REL_REL_ID', 'ReleaseID');
+define('REQ_VERS_ASSOC_REL_ID', 'requirementversion_release_associd');
+define('REQ_VERS_ASSOC_REL_REQ_ID', 'requirementversionid');
+define('REQ_VERS_ASSOC_REL_REL_ID', 'releaseid');
 
 # -------------------------------------------
 # TEST_CASE_RESULTS TABLE - FIELDS
 # -------------------------------------------
 /*
-define('TEST_CASE_RESULTS_ID', 'TestCaseResultsID');
-define('TEST_CASE_RESULTS_LOG_TIME_STAMP', 'LogTimeStamp');
-define('TEST_CASE_RESULTS_TEST_STATUS', 'TestStatus');
-define('TEST_CASE_RESULTS_STARTEd', 'Started');
-define('TEST_CASE_RESULTS_FINISHED', 'Finished');
-define('TEST_CASE_RESULTS_CVS_VERSION', 'CVSVersion');
-define('TEST_CASE_RESULTS_TC_UNIQUE_RUN_ID', 'TC_UniqueRunID');
-define('TEST_CASE_RESULTS_TS_UNIQUE_RUN_ID', 'TS_UniqueRunID');
-define('TEST_CASE_RESULTS_TEST_CASE', 'TestCase');
-define('TEST_CASE_RESULTS_TEST_PATH', 'TestPath');
-define('TEST_CASE_RESULTS_NARRATIVE', 'Narrative');
-define('TEST_CASE_RESULTS_RUN_ID', 'RunID');
-define('TEST_CASE_RESULTS_TIME_STARTED', 'TimeStarted');
-define('TEST_CASE_RESULTS_TIME_FINISHED', 'TimeFinished');
+define('TEST_CASE_RESULTS_ID', 'testcaseresultsid');
+define('TEST_CASE_RESULTS_LOG_TIME_STAMP', 'logtimestamp');
+define('TEST_CASE_RESULTS_TEST_STATUS', 'teststatus');
+define('TEST_CASE_RESULTS_STARTEd', 'started');
+define('TEST_CASE_RESULTS_FINISHED', 'finished');
+define('TEST_CASE_RESULTS_CVS_VERSION', 'cvsversion');
+define('TEST_CASE_RESULTS_TC_UNIQUE_RUN_ID', 'tc_uniquerunid');
+define('TEST_CASE_RESULTS_TS_UNIQUE_RUN_ID', 'ts_uniquerunid');
+define('TEST_CASE_RESULTS_TEST_CASE', 'testcase');
+define('TEST_CASE_RESULTS_TEST_PATH', 'testpath');
+define('TEST_CASE_RESULTS_NARRATIVE', 'narrative');
+define('TEST_CASE_RESULTS_RUN_ID', 'runid');
+define('TEST_CASE_RESULTS_TIME_STARTED', 'timestarted');
+define('TEST_CASE_RESULTS_TIME_FINISHED', 'timefinished');
 */
 
 # -------------------------------------------
@@ -734,227 +734,227 @@ define('TEST_FUNC_ASSOC_ON_ERROR', 'on_error');
 # -------------------------------------------
 # TEST_PLAN TABLE - Fields
 # -------------------------------------------
-define('TEST_PLAN_ID', 'TestPlanID');
-define('TEST_PLAN_BUILDID', 'BuildID');
-define('TEST_PLAN_NAME', 'TestPlanName');
+define('TEST_PLAN_ID', 'testplanid');
+define('TEST_PLAN_BUILDID', 'buildid');
+define('TEST_PLAN_NAME', 'testplanname');
 
 # -------------------------------------------
 # TEST_PLAN_VERSION TABLE - Fields
 # -------------------------------------------
-define('TEST_PLAN_VERSION_ID', 'TestPlanVersionID');
-define('TEST_PLAN_VERSION_TESTPLANID', 'TestPlanID');
-define('TEST_PLAN_VERSION_VERSION', 'Version');
-define('TEST_PLAN_VERSION_UPLOADEDDATE', 'UploadedDate');
-define('TEST_PLAN_VERSION_UPLOADEDBY', 'UploadedBy');
-define('TEST_PLAN_VERSION_FILENAME', 'FileName');
-define('TEST_PLAN_VERSION_COMMMENTS', 'Comments');
-define('TEST_PLAN_VERSION_LATEST', 'Latest');
+define('TEST_PLAN_VERSION_ID', 'testplanversionid');
+define('TEST_PLAN_VERSION_TESTPLANID', 'testplanid');
+define('TEST_PLAN_VERSION_VERSION', 'version');
+define('TEST_PLAN_VERSION_UPLOADEDDATE', 'uploadeddate');
+define('TEST_PLAN_VERSION_UPLOADEDBY', 'uploadedby');
+define('TEST_PLAN_VERSION_FILENAME', 'filename');
+define('TEST_PLAN_VERSION_COMMMENTS', 'comments');
+define('TEST_PLAN_VERSION_LATEST', 'latest');
 
 # -------------------------------------------
 # TEST_SET TABLE - Fields
 # -------------------------------------------
-define('TS_ID', 'TestSetID');
-define('TS_NAME', 'TestSetName');
-define('TS_STATUS', 'TestSetStatus');
-define('TS_DESCRIPTION', 'Description');
-define('TS_BUILD_ID', 'BuildID');
-define('TS_ORDERBY', 'TestSetOrderBy');
-define('TS_ARCHIVE', 'Archive');
-define('TS_DATE_CREATED', 'DateCreated');
-define('TS_SIGNOFF_DATE', 'SignOffDate');
-define('TS_SIGNOFF_BY', 'SignOffBy');
-define('TS_SIGNOFF_COMMENTS', 'SignOffComments');
-define('TS_UNIQUE_ID', 'UniqueID');
-define('TS_LOCKCHANGE_DATE','LockChangeDate');
-define('TS_LOCK','Locked');
-define('TS_LOCK_BY','LockBy');
-define('TS_LOCK_COMMENT','LockComment');
+define('TS_ID', 'testsetid');
+define('TS_NAME', 'testsetname');
+define('TS_STATUS', 'testsetstatus');
+define('TS_DESCRIPTION', 'description');
+define('TS_BUILD_ID', 'buildid');
+define('TS_ORDERBY', 'testsetorderby');
+define('TS_ARCHIVE', 'archive');
+define('TS_DATE_CREATED', 'datecreated');
+define('TS_SIGNOFF_DATE', 'signoffdate');
+define('TS_SIGNOFF_BY', 'signoffby');
+define('TS_SIGNOFF_COMMENTS', 'signoffcomments');
+define('TS_UNIQUE_ID', 'uniqueid');
+define('TS_LOCKCHANGE_DATE', 'lockchangedate');
+define('TS_LOCK', 'locked');
+define('TS_LOCK_BY', 'lockby');
+define('TS_LOCK_COMMENT', 'lockcomment');
 
 #--------------------------------------------
 # TEST_TS_ASSOC TABLE - FIELDS
 # -------------------------------------------
-define('TEST_TS_ASSOC_ID', 'TestSet_TestSuite_AssocID');
-define('TEST_TS_ASSOC_TS_ID', 'TestSetID');
-define('TEST_TS_ASSOC_TEST_ID', 'TestID');
-define('TEST_TS_ASSOC_FINISHED', 'Finished');
-define('TEST_TS_ASSOC_TIMESTAMP', 'LogTimeStamp');
+define('TEST_TS_ASSOC_ID', 'testset_testsuite_associd');
+define('TEST_TS_ASSOC_TS_ID', 'testsetid');
+define('TEST_TS_ASSOC_TEST_ID', 'testid');
+define('TEST_TS_ASSOC_FINISHED', 'finished');
+define('TEST_TS_ASSOC_TIMESTAMP', 'logtimestamp');
 define('TEST_TS_ASSOC_ROOT_CAUSE', 'root_cause');
-define('TEST_TS_ASSOC_STATUS', 'TestStatus');
-define('TEST_TS_ASSOC_ASSIGNED_TO', 'AssignedTo');
-define('TEST_TS_ASSOC_COMMENTS', 'Comments');
+define('TEST_TS_ASSOC_STATUS', 'teststatus');
+define('TEST_TS_ASSOC_ASSIGNED_TO', 'assignedto');
+define('TEST_TS_ASSOC_COMMENTS', 'comments');
 
 # -------------------------------------------
 # TEST_STATUS TABLE - FIELDS
 # -------------------------------------------
-define('TEST_STATUS_ID', 'TestStatusID');
+define('TEST_STATUS_ID', 'teststatusid');
 define('TEST_STATUS_PROJECT_ID', 'project_id');
-define('TEST_STATUS_STATUS', 'TestStatus');
+define('TEST_STATUS_STATUS', 'teststatus');
 
 # -------------------------------------------
 # TEST TABLE - FIELDS
 # -------------------------------------------
-define('TEST_ID', 'TestID');
+define('TEST_ID', 'testid');
 define('TEST_PROJ_ID', 'project_id');
-define('TEST_DELETED', 'Deleted');
-define('TEST_ARCHIVED', 'Archive');
-define('TEST_CODE_REVIEW', 'CodeReview');
-define('TEST_BA_APPROVAL', 'BA_Approval');
-define('TEST_MANUAL',   'Steps');
-define('TEST_AUTOMATED', 'Script');
-define('TEST_LR', 'LoadRunner');
+define('TEST_DELETED', 'deleted');
+define('TEST_ARCHIVED', 'archive');
+define('TEST_CODE_REVIEW', 'codereview');
+define('TEST_BA_APPROVAL', 'ba_approval');
+define('TEST_MANUAL', 'steps');
+define('TEST_AUTOMATED', 'script');
+define('TEST_LR', 'loadrunner');
 define('TEST_EMAIL_BA_OWNER', 'email_ba_owner');
 define('TEST_EMAIL_QA_OWNER', 'email_qa_owner');
-define('TEST_AUTO_PASS', 'AutoPass');
-define('TEST_DURATION', 'Duration');
-define('TEST_PURPOSE', 'Purpose');
-define('TEST_NAME', 'TestSuiteName');
-define('TEST_TESTTYPE', 'TestType');
-define('TEST_AREA_TESTED', 'AreaTested');
-define('TEST_BA_OWNER', 'BAOwner');
-define('TEST_QA_OWNER', 'Scripter');
-define('TEST_APPROVED_FOR_AUTO', 'ApprovedForAuto');
-define('TEST_PRIORITY', 'Priority');
-define('TEST_STATUS', 'Status');
-define('TEST_COMMENTS', 'Comments');
-define('TEST_TESTER', 'Tester');
-define('TEST_ASSIGNED_TO', 'AssignedTo');
-define('TEST_ASSIGNED_BY', 'AssignedBy');
-define('TEST_DATE_CREATED', 'DateCreated');
-define('TEST_DATE_ASSIGNED', 'DateAssigned');
-define('TEST_DATE_EXPECTED', 'ExpDateComplete');
-define('TEST_DATE_COMPLETE', 'ActDateComplete');
-define('TEST_BA_SIGNOFF', 'BASignOff');
-define('TEST_SIGNOFF_BY', 'SignoffBy');
-define('TEST_SIGNOFF_DATE', 'SignoffDate');
-define('TEST_LAST_UPDATED', 'LastUpdated');
-define('TEST_LAST_UPDATED_BY', 'LastUpdatedBy');
-define('TEST_UNIQUE_ID', 'UniqueID');
+define('TEST_AUTO_PASS', 'autopass');
+define('TEST_DURATION', 'duration');
+define('TEST_PURPOSE', 'purpose');
+define('TEST_NAME', 'testsuitename');
+define('TEST_TESTTYPE', 'testtype');
+define('TEST_AREA_TESTED', 'areatested');
+define('TEST_BA_OWNER', 'baowner');
+define('TEST_QA_OWNER', 'scripter');
+define('TEST_APPROVED_FOR_AUTO', 'approvedforauto');
+define('TEST_PRIORITY', 'priority');
+define('TEST_STATUS', 'status');
+define('TEST_COMMENTS', 'comments');
+define('TEST_TESTER', 'tester');
+define('TEST_ASSIGNED_TO', 'assignedto');
+define('TEST_ASSIGNED_BY', 'assignedby');
+define('TEST_DATE_CREATED', 'datecreated');
+define('TEST_DATE_ASSIGNED', 'dateassigned');
+define('TEST_DATE_EXPECTED', 'expdatecomplete');
+define('TEST_DATE_COMPLETE', 'actdatecomplete');
+define('TEST_BA_SIGNOFF', 'basignoff');
+define('TEST_SIGNOFF_BY', 'signoffby');
+define('TEST_SIGNOFF_DATE', 'signoffdate');
+define('TEST_LAST_UPDATED', 'lastupdated');
+define('TEST_LAST_UPDATED_BY', 'lastupdatedby');
+define('TEST_UNIQUE_ID', 'uniqueid');
 
 # -------------------------------------------
 # TEST_RESULTS TABLE - FIELDS
 # -------------------------------------------
-define('TEST_RESULTS_ID', 'TestSuiteResultsID');
-define('TEST_RESULTS_TEST_SET_ID', 'TestSetID');
-define('TEST_RESULTS_TEMPEST_TEST_ID', 'TestID');
-define('TEST_RESULTS_LOG_TIME_STAMP', 'LogTimeStamp');
-define('TEST_RESULTS_TEST_STATUS', 'TestStatus');
+define('TEST_RESULTS_ID', 'testsuiteresultsid');
+define('TEST_RESULTS_TEST_SET_ID', 'testsetid');
+define('TEST_RESULTS_TEMPEST_TEST_ID', 'testid');
+define('TEST_RESULTS_LOG_TIME_STAMP', 'logtimestamp');
+define('TEST_RESULTS_TEST_STATUS', 'teststatus');
 define('TEST_RESULTS_ASSIGNED_TO', 'assigned_to');
 define('TEST_RESULTS_ROOT_CAUSE', 'root_cause');
 define('TEST_RESULTS_COMMENTS', 'test_run_comment');
-define('TEST_RESULTS_STARTED', 'Started');
-define('TEST_RESULTS_FINISHED', 'Finished');
-define('TEST_RESULTS_CVS_VERSION', 'CVSVersion');
-define('TEST_RESULTS_CHECKED_FOR_AUTO_PASS', 'CheckedForAutoPass');
-define('TEST_RESULTS_OS', 'OS');
-define('TEST_RESULTS_SP', 'SP');
-define('TEST_RESULTS_N_NUMBER_ID', 'nNumberID');
-define('TEST_RESULTS_USER_ID', 'UserID');
-define('TEST_RESULTS_MACHINE_NAME', 'MachineName');
-define('TEST_RESULTS_TEST_SUITE', 'TestSuite');
-define('TEST_RESULTS_TEST_PATH', 'TestPath');
-define('TEST_RESULTS_ENVIRONMENT', 'Environment');
-define('TEST_RESULTS_RUN_ID', 'RunID');
-define('TEST_RESULTS_TS_UNIQUE_RUN_ID', 'TS_UniqueRunID');
-define('TEST_RESULTS_TIME_STARTED', 'TimeStarted');
-define('TEST_RESULTS_TIME_FINISHED', 'TimeFinished');
+define('TEST_RESULTS_STARTED', 'started');
+define('TEST_RESULTS_FINISHED', 'finished');
+define('TEST_RESULTS_CVS_VERSION', 'cvsversion');
+define('TEST_RESULTS_CHECKED_FOR_AUTO_PASS', 'checkedforautopass');
+define('TEST_RESULTS_OS', 'os');
+define('TEST_RESULTS_SP', 'sp');
+define('TEST_RESULTS_N_NUMBER_ID', 'nnumberid');
+define('TEST_RESULTS_USER_ID', 'userid');
+define('TEST_RESULTS_MACHINE_NAME', 'machinename');
+define('TEST_RESULTS_TEST_SUITE', 'testsuite');
+define('TEST_RESULTS_TEST_PATH', 'testpath');
+define('TEST_RESULTS_ENVIRONMENT', 'environment');
+define('TEST_RESULTS_RUN_ID', 'runid');
+define('TEST_RESULTS_TS_UNIQUE_RUN_ID', 'ts_uniquerunid');
+define('TEST_RESULTS_TIME_STARTED', 'timestarted');
+define('TEST_RESULTS_TIME_FINISHED', 'timefinished');
 
 # -------------------------------------------
 # TEST_STEPS TABLE - FIELDS
 # -------------------------------------------
-define('TEST_STEP_ID', 'TestStepID');
-define('TEST_STEP_TEST_ID', 'TestID');
-define('TEST_STEP_VERSION_ID', 'TestVersionID');
-define('TEST_STEP_NO', 'TestStep_Number');
-define('TEST_STEP_ACTION', 'Action');
-define('TEST_STEP_EXPECTED', 'Expected_Result');
-define('TEST_STEP_TEST_INPUTS', 'Inputs');
-define('TEST_STEP_INFO_STEP', 'StepType');
+define('TEST_STEP_ID', 'teststepid');
+define('TEST_STEP_TEST_ID', 'testid');
+define('TEST_STEP_VERSION_ID', 'testversionid');
+define('TEST_STEP_NO', 'teststep_number');
+define('TEST_STEP_ACTION', 'action');
+define('TEST_STEP_EXPECTED', 'expected_result');
+define('TEST_STEP_TEST_INPUTS', 'inputs');
+define('TEST_STEP_INFO_STEP', 'steptype');
 
 # -------------------------------------------
 # TEST_REQ_ASSOC TABLE - FIELDS
 # -------------------------------------------
-define('TEST_REQ_ASSOC_ID', 'TestSuite_Requirement_AssocID');
-define('TEST_REQ_ASSOC_TEMPEST_TEST_ID', 'TestID');
-define('TEST_REQ_ASSOC_REQ_ID', 'ReqID');
-define('TEST_REQ_ASSOC_PERCENT_COVERED', 'PercentCovered');
+define('TEST_REQ_ASSOC_ID', 'testsuite_requirement_associd');
+define('TEST_REQ_ASSOC_TEMPEST_TEST_ID', 'testid');
+define('TEST_REQ_ASSOC_REQ_ID', 'reqid');
+define('TEST_REQ_ASSOC_PERCENT_COVERED', 'percentcovered');
 
 # -------------------------------------------
 # TEST_TYPE TABLE - FIELDS
 # -------------------------------------------
-define('TEST_TYPE_ID', 'TestTypeID');
-define('TEST_TYPE_TYPE', 'TestType');
+define('TEST_TYPE_ID', 'testtypeid');
+define('TEST_TYPE_TYPE', 'testtype');
 define('TEST_TYPE_PROJ_ID', 'project_id');
 
 # -------------------------------------------
 # TEST_VERS TABLE - FIELDS
 # -------------------------------------------
-define('TEST_VERS_ID', 'TestVersionID');
-define('TEST_VERS_TEST_ID', 'TestID');
-define('TEST_VERS_NUMBER', 'Version');
-define('TEST_VERS_LATEST', 'Latest');
-define('TEST_VERS_ACTIVE', 'ActiveVersion');
-define('TEST_VERS_COMMENTS', 'Comments');
-define('TEST_VERS_STATUS', 'Status');
-define('TEST_VERS_ASSIGNED_TO', 'AssignedTo');
-define('TEST_VERS_SIGNOFF_BY', 'SignOffBy');
-define('TEST_VERS_SIGNOFF_DATE', 'BASignOff');
-define('TEST_VERS_AUTHOR', 'Creator');
-define('TEST_VERS_DATE_CREATED', 'DateCreated');
+define('TEST_VERS_ID', 'testversionid');
+define('TEST_VERS_TEST_ID', 'testid');
+define('TEST_VERS_NUMBER', 'version');
+define('TEST_VERS_LATEST', 'latest');
+define('TEST_VERS_ACTIVE', 'activeversion');
+define('TEST_VERS_COMMENTS', 'comments');
+define('TEST_VERS_STATUS', 'status');
+define('TEST_VERS_ASSIGNED_TO', 'assignedto');
+define('TEST_VERS_SIGNOFF_BY', 'signoffby');
+define('TEST_VERS_SIGNOFF_DATE', 'basignoff');
+define('TEST_VERS_AUTHOR', 'creator');
+define('TEST_VERS_DATE_CREATED', 'datecreated');
 
 # -------------------------------------------
 # TEST_WORK_FLOW TABLE - FIELDS
 # -------------------------------------------
-define('TEST_WORK_FLOW_UNIQUE_TEST_ID', 'UniqueTestID');
-define('TEST_WORK_FLOW_COMPLETE', 'Complete');
-define('TEST_WORK_FLOW_TEST_NAME', 'TestName');
-define('TEST_WORK_FLOW_BA_TO_CREATE_TC', 'BAToCreateTC');
-define('TEST_WORK_FLOW_BA_CREATE_DATE_COMP', 'BACreateDateComp');
-define('TEST_WORK_FLOW_QA_TO_REVIEW_TV', 'QAToReviewTC');
-define('TEST_WORK_FLOW_QA_REVIEW_DATE_COMP', 'QAReviewDateComp');
-define('TEST_WORK_FLOW_QA_AUTOMATED', 'QAAutomated');
-define('TEST_WORK_FLOW_QA_AUTO_DATE_START', 'QAAutoDateStart');
-define('TEST_WORK_FLOW_QA_AUTO_DATE_EXP', 'QAAutoDateExp');
-define('TEST_WORK_FLOW_QA_AUTO_DATE_COMP', 'QAAutoDateComp');
-define('TEST_WORK_FLOW_BA_TO_APPROVE', 'BAToApprove');
-define('TEST_WORK_FLOW_BA_APPROVAL_DATE', 'BAApprovalDate');
-define('TEST_WORK_FLOW_COMMENTS', 'Comments');
+define('TEST_WORK_FLOW_UNIQUE_TEST_ID', 'uniquetestid');
+define('TEST_WORK_FLOW_COMPLETE', 'complete');
+define('TEST_WORK_FLOW_TEST_NAME', 'testname');
+define('TEST_WORK_FLOW_BA_TO_CREATE_TC', 'batocreatetc');
+define('TEST_WORK_FLOW_BA_CREATE_DATE_COMP', 'bacreatedatecomp');
+define('TEST_WORK_FLOW_QA_TO_REVIEW_TV', 'qatoreviewtc');
+define('TEST_WORK_FLOW_QA_REVIEW_DATE_COMP', 'qareviewdatecomp');
+define('TEST_WORK_FLOW_QA_AUTOMATED', 'qaautomated');
+define('TEST_WORK_FLOW_QA_AUTO_DATE_START', 'qaautodatestart');
+define('TEST_WORK_FLOW_QA_AUTO_DATE_EXP', 'qaautodateexp');
+define('TEST_WORK_FLOW_QA_AUTO_DATE_COMP', 'qaautodatecomp');
+define('TEST_WORK_FLOW_BA_TO_APPROVE', 'batoapprove');
+define('TEST_WORK_FLOW_BA_APPROVAL_DATE', 'baapprovaldate');
+define('TEST_WORK_FLOW_COMMENTS', 'comments');
 
 # -------------------------------------------
 # VERIFY_RESULTS TABLE - FIELDS
 # -------------------------------------------
-define('VERIFY_RESULTS_ID', 'VerifyResultsID');
-define('VERIFY_RESULTS_LOG_TIME_STAMP', 'LogTimeStamp');
-define('VERIFY_RESULTS_TEST_STATUS', 'TestStatus');
-define('VERIFY_RESULTS_LINE_NUMBER', 'LineNumber');
-define('VERIFY_RESULTS_TOTAL_PHY_MEM', 'TotalPhyMem');
-define('VERIFY_RESULTS_FREE_PHY_MEM', 'FreePhyMem');
-define('VERIFY_RESULTS_TOTAL_VIR_MEM', 'TotalVirMem');
-define('VERIFY_RESULTS_FREE_VIR_MEM', 'FreeVirMem');
-define('VERIFY_RESULTS_CUR_MEM_UTIL', 'CurMemUtil');
-define('VERIFY_RESULTS_TOTAL_PAGE_FILE', 'TotalPageFile');
-define('VERIFY_RESULTS_FREE_PAGE_FILE', 'FreePageFile');
-define('VERIFY_RESULTS_SHOW_CUSTOM_1', 'Custom_1');
-define('VERIFY_RESULTS_SHOW_CUSTOM_2', 'Custom_2');
-define('VERIFY_RESULTS_SHOW_CUSTOM_3', 'Custom_3');
-define('VERIFY_RESULTS_SHOW_CUSTOM_4', 'Custom_4');
-define('VERIFY_RESULTS_SHOW_CUSTOM_5', 'Custom_5');
-define('VERIFY_RESULTS_SHOW_CUSTOM_6', 'Custom_6');
-define('VERIFY_RESULTS_COMMENT', 'Comment');
-define('VERIFY_RESULTS_ACTION', 'Action');
-define('VERIFY_RESULTS_EXPECTED_RESULT', 'ExpectedResult');
-define('VERIFY_RESULTS_ACTUAL_RESULT', 'ActualResult');
-define('VERIFY_RESULTS_WINDOW', 'Window');
-define('VERIFY_RESULTS_OBJ', 'Object');
-define('VERIFY_RESULTS_OBJ_TYPE', 'ObjType');
-define('VERIFY_RESULTS_VAL_ID', 'StepNumber');
-define('VERIFY_RESULTS_TS_UNIQUE_RUN_ID', 'TS_UniqueRunID');
-define('VERIFY_RESULTS_TIMESTAMP', 'TimeStamp');
+define('VERIFY_RESULTS_ID', 'verifyresultsid');
+define('VERIFY_RESULTS_LOG_TIME_STAMP', 'logtimestamp');
+define('VERIFY_RESULTS_TEST_STATUS', 'teststatus');
+define('VERIFY_RESULTS_LINE_NUMBER', 'linenumber');
+define('VERIFY_RESULTS_TOTAL_PHY_MEM', 'totalphymem');
+define('VERIFY_RESULTS_FREE_PHY_MEM', 'freephymem');
+define('VERIFY_RESULTS_TOTAL_VIR_MEM', 'totalvirmem');
+define('VERIFY_RESULTS_FREE_VIR_MEM', 'freevirmem');
+define('VERIFY_RESULTS_CUR_MEM_UTIL', 'curmemutil');
+define('VERIFY_RESULTS_TOTAL_PAGE_FILE', 'totalpagefile');
+define('VERIFY_RESULTS_FREE_PAGE_FILE', 'freepagefile');
+define('VERIFY_RESULTS_SHOW_CUSTOM_1', 'custom_1');
+define('VERIFY_RESULTS_SHOW_CUSTOM_2', 'custom_2');
+define('VERIFY_RESULTS_SHOW_CUSTOM_3', 'custom_3');
+define('VERIFY_RESULTS_SHOW_CUSTOM_4', 'custom_4');
+define('VERIFY_RESULTS_SHOW_CUSTOM_5', 'custom_5');
+define('VERIFY_RESULTS_SHOW_CUSTOM_6', 'custom_6');
+define('VERIFY_RESULTS_COMMENT', 'comment');
+define('VERIFY_RESULTS_ACTION', 'action');
+define('VERIFY_RESULTS_EXPECTED_RESULT', 'expectedresult');
+define('VERIFY_RESULTS_ACTUAL_RESULT', 'actualresult');
+define('VERIFY_RESULTS_WINDOW', 'window');
+define('VERIFY_RESULTS_OBJ', 'object');
+define('VERIFY_RESULTS_OBJ_TYPE', 'objtype');
+define('VERIFY_RESULTS_VAL_ID', 'stepnumber');
+define('VERIFY_RESULTS_TS_UNIQUE_RUN_ID', 'ts_uniquerunid');
+define('VERIFY_RESULTS_TIMESTAMP', 'timestamp');
 define('VERIFY_RESULTS_DEFECT_ID', 'defect_id');
 
 # -------------------------------------------
 # USER TABLE - FIELDS
 # -------------------------------------------
-define('USER_ID', 	 'user_id');
+define('USER_ID', 'user_id');
 define('USER_PWORD', 'password');
 define('USER_UNAME', 'username');
 define('USER_FNAME', 'first_name');
@@ -974,7 +974,7 @@ define('PROJ_NAME', 'project_name');
 define('PROJ_DATE_CREATED', 'date_created');
 define('PROJ_DELETED', 'deleted');
 define('PROJ_REQ_UPLOAD_PATH', 'req_upload_path');
-define('PROJ_TEST_UPLOAD_PATH',	'test_upload_path');
+define('PROJ_TEST_UPLOAD_PATH', 'test_upload_path');
 define('PROJ_TEST_RUN_UPLOAD_PATH', 'test_run_upload_path');
 define('PROJ_TEST_PLAN_UPLOAD_PATH', 'test_plan_upload_path');
 define('PROJ_DEFECT_UPLOAD_PATH', 'defect_upload_path');
@@ -1028,96 +1028,96 @@ define('RESET_PASS_EXPIRES', 'expires');
 # -------------------------------------------
 # BUG TABLE - FIELDS
 # -------------------------------------------
-define('BUG_ID', 'BugID');
-define('BUG_PROJECT_ID', 'ProjectID');
-define('BUG_CATEGORY', 'Category');
-define('BUG_COMPONENT', 'Component');
-define('BUG_PRIORITY', 'Priority');
-define('BUG_SEVERITY', 'Severity');
-define('BUG_CLOSED_REASON_CODE', 'ClosedReasonCode');
-define('BUG_STATUS', 'Status');
-define('BUG_REPORTER', 'Reporter');
-define('BUG_REPORTED_DATE', 'ReportedDate');
-define('BUG_ASSIGNED_TO', 'AssignedTo');
-define('BUG_ASSIGNED_TO_DEVELOPER', 'AssignedToDeveloper');
-define('BUG_CLOSED', 'Closed');
-define('BUG_CLOSED_DATE', 'ClosedDate');
-define('BUG_TEST_VERIFY_ID', 'TestID');
-define('BUG_REQ_VERSION_ID', 'ReqID');
-define('BUG_FOUND_IN_RELEASE', 'FoundInRelease');
-define('BUG_ASSIGN_TO_RELEASE', 'AssignToRelease');
-define('BUG_IMPLEMENTED_IN_RELEASE', 'ImplementedInRelease');
-define('BUG_DISCOVERY_PERIOD', 'DiscoveryPeriod');
-define('BUG_SUMMARY', 'Summary');
-define('BUG_DESCRIPTION', 'Description');
+define('BUG_ID', 'bugid');
+define('BUG_PROJECT_ID', 'projectid');
+define('BUG_CATEGORY', 'category');
+define('BUG_COMPONENT', 'component');
+define('BUG_PRIORITY', 'priority');
+define('BUG_SEVERITY', 'severity');
+define('BUG_CLOSED_REASON_CODE', 'closedreasoncode');
+define('BUG_STATUS', 'status');
+define('BUG_REPORTER', 'reporter');
+define('BUG_REPORTED_DATE', 'reporteddate');
+define('BUG_ASSIGNED_TO', 'assignedto');
+define('BUG_ASSIGNED_TO_DEVELOPER', 'assignedtodeveloper');
+define('BUG_CLOSED', 'closed');
+define('BUG_CLOSED_DATE', 'closeddate');
+define('BUG_TEST_VERIFY_ID', 'testid');
+define('BUG_REQ_VERSION_ID', 'reqid');
+define('BUG_FOUND_IN_RELEASE', 'foundinrelease');
+define('BUG_ASSIGN_TO_RELEASE', 'assigntorelease');
+define('BUG_IMPLEMENTED_IN_RELEASE', 'implementedinrelease');
+define('BUG_DISCOVERY_PERIOD', 'discoveryperiod');
+define('BUG_SUMMARY', 'summary');
+define('BUG_DESCRIPTION', 'description');
 
 # -------------------------------------------
 # BUG MONITOR TABLE - FIELDS
 # -------------------------------------------
-define('BUG_MONITOR_ID', 'BugMonitorID');
-define('BUG_MONITOR_USER_ID', 'UserID');
-define('BUG_MONITOR_BUG_ID', 'BugID');
-define('BUG_MONITOR_MONITOR', 'Monitor');
+define('BUG_MONITOR_ID', 'bugmonitorid');
+define('BUG_MONITOR_USER_ID', 'userid');
+define('BUG_MONITOR_BUG_ID', 'bugid');
+define('BUG_MONITOR_MONITOR', 'monitor');
 
 # -------------------------------------------
 # BUG NOTE TABLE - FIELDS
 # -------------------------------------------
-define('BUG_NOTE_ID', 'BugNoteID');
-define('BUG_NOTE_BUG_ID', 'BugID');
-define('BUG_NOTE_AUTHOR', 'Author');
-define('BUG_NOTE_DATE_CREATED', 'DateCreated');
-define('BUG_NOTE_DETAIL', 'BugNoteDetail');
+define('BUG_NOTE_ID', 'bugnoteid');
+define('BUG_NOTE_BUG_ID', 'bugid');
+define('BUG_NOTE_AUTHOR', 'author');
+define('BUG_NOTE_DATE_CREATED', 'datecreated');
+define('BUG_NOTE_DETAIL', 'bugnotedetail');
 
 # -------------------------------------------
 # BUG CATEGORY TABLE - FIELDS
 # -------------------------------------------
-define('CATEGORY_ID', 'CategoryID');
-define('CATEGORY_PROJECT_ID', 'ProjectID');
-define('CATEGORY_NAME', 'CategoryName');
+define('CATEGORY_ID', 'categoryid');
+define('CATEGORY_PROJECT_ID', 'projectid');
+define('CATEGORY_NAME', 'categoryname');
 
 # -------------------------------------------
 # BUG COMPONENT TABLE - FIELDS
 # -------------------------------------------
-define('COMPONENT_ID', 'ComponentID');
-define('COMPONENT_PROJECT_ID', 'ProjectID');
-define('COMPONENT_NAME', 'ComponentName');
+define('COMPONENT_ID', 'componentid');
+define('COMPONENT_PROJECT_ID', 'projectid');
+define('COMPONENT_NAME', 'componentname');
 
 # -------------------------------------------
 # BUG FILE TABLE - FIELDS
 # -------------------------------------------
-define('BUG_FILE_ID', 'BugFileID');
-define('BUG_FILE_BUG_ID', 'BugID');
-define('BUG_FILE_UPLOAD_DATE', 'UploadedDate');
-define('BUG_FILE_UPLOAD_BY', 'UploadedBy');
-define('BUG_FILE_DISPLAY_NAME', 'DisplayName');
-define('BUG_FILE_NAME', 'BugFileName');
+define('BUG_FILE_ID', 'bugfileid');
+define('BUG_FILE_BUG_ID', 'bugid');
+define('BUG_FILE_UPLOAD_DATE', 'uploadeddate');
+define('BUG_FILE_UPLOAD_BY', 'uploadedby');
+define('BUG_FILE_DISPLAY_NAME', 'displayname');
+define('BUG_FILE_NAME', 'bugfilename');
 
 # -------------------------------------------
 # BUG HISTORY TABLE - FIELDS
 # -------------------------------------------
-define('BUG_HISTORY_ID', 'BugHistoryID');
-define('BUG_HISTORY_BUG_ID', 'BugID');
-define('BUG_HISTORY_DATE', 'DateModified');
-define('BUG_HISTORY_USER', 'UserName');
-define('BUG_HISTORY_FIELD', 'Field');
-define('BUG_HISTORY_OLD_VALUE', 'OldValue');
-define('BUG_HISTORY_NEW_VALUE', 'NewValue');
+define('BUG_HISTORY_ID', 'bughistoryid');
+define('BUG_HISTORY_BUG_ID', 'bugid');
+define('BUG_HISTORY_DATE', 'datemodified');
+define('BUG_HISTORY_USER', 'username');
+define('BUG_HISTORY_FIELD', 'field');
+define('BUG_HISTORY_OLD_VALUE', 'oldvalue');
+define('BUG_HISTORY_NEW_VALUE', 'newvalue');
 
 # -------------------------------------------
 # BUG ASSOC TABLE - FIELDS
 # -------------------------------------------
-define('BUG_ASSOC_ID', 'BugAssocID');
-define('BUG_ASSOC_SRC_ID', 'PrimaryID');
-define('BUG_ASSOC_DEST_ID', 'SecondaryID');
-define('BUG_ASSOC_REL_TYPE', 'RelationshipType');
+define('BUG_ASSOC_ID', 'bugassocid');
+define('BUG_ASSOC_SRC_ID', 'primaryid');
+define('BUG_ASSOC_DEST_ID', 'secondaryid');
+define('BUG_ASSOC_REL_TYPE', 'relationshiptype');
 
 # -------------------------------------------
 # BUG TEST ASSOC TABLE - FIELDS
 # -------------------------------------------
 /*
-define('BUG_TEST_ASSOC_ID', 'BugAssocID');
-define('BUG_ID', 'BugID');
-define('VERIFICATION_ID', 'VerificationID');
+define('BUG_TEST_ASSOC_ID', 'bugassocid');
+define('BUG_ID', 'bugid');
+define('VERIFICATION_ID', 'verificationid');
 */
 
 define('BUG_RELATED', 0);

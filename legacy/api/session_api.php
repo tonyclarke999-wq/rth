@@ -739,10 +739,12 @@ function session_records_ischecked_group( $property_set, $group ) {
 function session_set_properties( $property_set, $properties=null ) {
 
 	# Set the properties.
-	foreach($_SESSION['properties'][$property_set] as $key => $value) {
+	if (isset($_SESSION['properties'][$property_set]) && is_array($_SESSION['properties'][$property_set])) {
+		foreach($_SESSION['properties'][$property_set] as $key => $value) {
 
-		if( !empty($properties[$key]) ) {
-			$_SESSION['properties'][$property_set][$key] = $properties[$key];
+			if( !empty($properties[$key]) ) {
+				$_SESSION['properties'][$property_set][$key] = $properties[$key];
+			}
 		}
 	}
 
@@ -779,7 +781,7 @@ function session_set_properties( $property_set, $properties=null ) {
         }
     }
 
-    return $_SESSION['properties'][$property_set];
+    return isset($_SESSION['properties'][$property_set]) ? $_SESSION['properties'][$property_set] : null;
 }
 
 function session_reset_properties( $property_set ) {
@@ -814,7 +816,7 @@ function session_set_display_options( $element, $options ) {
     # Filter Options
     #
 
-    $s_filter = $_SESSION['disp1ay_opti0ns'][$element]['filter'];
+    $s_filter = isset($_SESSION['disp1ay_opti0ns'][$element]['filter']) ? $_SESSION['disp1ay_opti0ns'][$element]['filter'] : null;
 
 	if( isset($s_filter) ) {
 		foreach($s_filter as $key => $value) {
@@ -862,7 +864,7 @@ function session_set_display_options( $element, $options ) {
 
 function session_get_properties( $property_set ) {
 
-	$var = $_SESSION['properties'][$property_set];
+	$var = isset($_SESSION['properties'][$property_set]) ? $_SESSION['properties'][$property_set] : null;
 
 	return $var;
 }
@@ -977,8 +979,8 @@ function session_validate_form_get_field( $field, $origional_value="", $using_FC
 
 		# If $field is a string, convert special characters to html
 		if( is_string($_SESSION['validate_form'][$field]) && !$using_FCKeditor ) {
-			#added mysql_real_escape_string() to enable writing backslashes in all fields
-			$return_value = mysql_real_escape_string(htmlspecialchars($_SESSION['validate_form'][$field], ENT_QUOTES));
+			#replaced mysql_real_escape_string() with addslashes() to avoid fatal error when mysql extension is not present
+			$return_value = addslashes(htmlspecialchars($_SESSION['validate_form'][$field], ENT_QUOTES));
 
 		# Else just return $field
 		} else {
@@ -1069,7 +1071,7 @@ function session_set_user_properties( $user_id, $username, $tempest_admin, $proj
 # Get Session user properties
 # ----------------------------------------------------------------------
 function session_get_user_properties() {
-    return $_SESSION['user_properties'];
+    return isset($_SESSION['user_properties']) ? $_SESSION['user_properties'] : null;
 }
 
 
@@ -1190,7 +1192,7 @@ function session_set_project_properties($project_name,
 # Get Session project properties
 # ----------------------------------------------------------------------
 function session_get_project_properties() {
-    return $_SESSION['project_properties'];
+    return isset($_SESSION['project_properties']) ? $_SESSION['project_properties'] : null;
 }
 
 # ----------------------------------------------------------------------

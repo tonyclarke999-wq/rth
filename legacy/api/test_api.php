@@ -128,7 +128,7 @@ function &test_apply_filter($project_id, $where_clause, $per_page, $order_by, $o
 	*/
 
     $order_clause 	= " ORDER BY $order_by $order_dir";
-	$where_clause 	= $where_clause." GROUP BY $f_test_name";
+	$where_clause 	= $where_clause." GROUP BY $f_test_id";
     $q 				.= $where_clause.$order_clause;
 
 	if( $per_page!=0 && $page_number!=0 ) {
