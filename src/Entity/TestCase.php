@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\TestCaseRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: TestCaseRepository::class)]
@@ -28,6 +30,15 @@ class TestCase
 
     #[ORM\Column(length: 50)]
     private ?string $status = null;
+
+    #[ORM\OneToMany(mappedBy: 'testCase', targetEntity: TestStep::class, orphanRemoval: true)]
+    #[ORM\OrderBy(['stepNumber' => 'ASC'])]
+    private Collection $testSteps;
+
+    public function __construct()
+    {
+        $this->testSteps = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -90,6 +101,36 @@ class TestCase
     public function setStatus(string $status): self
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, TestStep>
+     */
+    public function getTestSteps(): Collection
+    {
+        return $this->testSteps;
+    }
+
+    public function addTestStep(TestStep $testStep): static
+    {
+        if (!$this->testSteps->contains($testStep)) {
+            $this->testSteps->add($testStep);
+            $testStep->setTestCase($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTestStep(TestStep $testStep): static
+    {
+        if ($this->testSteps->removeElement($testStep)) {
+            // set the owning side to null (unless already changed)
+            if ($testStep->getTestCase() === $this) {
+                $testStep->setTestCase(null);
+            }
+        }
 
         return $this;
     }

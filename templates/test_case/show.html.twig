@@ -1,0 +1,110 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Test Case: {{ test_case.name }}{% endblock %}
+
+{% block body %}
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>{{ test_case.name }}</h1>
+        <div>
+            <a href="{{ path('app_project_show', {'id': test_case.project.id}) }}" class="btn btn-outline-secondary">Back to Project</a>
+        </div>
+    </div>
+
+    <div class="row mb-4">
+        <div class="col-md-8">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Description</h5>
+                    <p class="card-text">{{ test_case.description|default('No description provided.')|nl2br }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h5 class="card-title">Details</h5>
+                    <ul class="list-unstyled">
+                        <li><strong>Status:</strong> 
+                            <span class="badge {{ test_case.status == 'Passed' ? 'bg-success' : 'bg-secondary' }}">
+                                {{ test_case.status }}
+                            </span>
+                        </li>
+                        <li><strong>Test Suite:</strong> {{ test_case.testSuite ? test_case.testSuite.name : 'None' }}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <h3 class="mb-3">Test Steps</h3>
+    
+    <div class="card shadow-sm mb-4">
+        <div class="card-body p-0">
+            <table class="table table-hover mb-0">
+                <thead class="table-light">
+                    <tr>
+                        <th class="ps-3" style="width: 5%">#</th>
+                        <th style="width: 30%">Action</th>
+                        <th style="width: 30%">Expected Result</th>
+                        <th style="width: 20%">Test Inputs</th>
+                        <th class="text-end pe-3" style="width: 15%">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for step in test_case.testSteps %}
+                    <tr>
+                        <td class="ps-3">{{ step.stepNumber }}</td>
+                        <td>{{ step.action|nl2br }}</td>
+                        <td>{{ step.expectedResult|nl2br }}</td>
+                        <td>{{ step.testInputs|default('-')|nl2br }}</td>
+                        <td class="text-end pe-3">
+                            <form method="post" action="{{ path('app_test_step_delete', {'id': step.id}) }}" onsubmit="return confirm('Are you sure you want to delete this step?');">
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ step.id) }}">
+                                <button class="btn btn-sm btn-outline-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="5" class="text-center text-muted py-4">No test steps have been added yet.</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-header bg-light">
+            <h5 class="mb-0">Add New Step</h5>
+        </div>
+        <div class="card-body">
+            <form action="{{ path('app_test_step_new', {'id': test_case.id}) }}" method="post">
+                <div class="row g-3">
+                    <div class="col-md-2">
+                        <label for="stepNumber" class="form-label">Step # (Optional)</label>
+                        <input type="number" class="form-control" id="stepNumber" name="stepNumber" placeholder="Auto">
+                    </div>
+                    <div class="col-md-10"></div>
+                    
+                    <div class="col-md-6">
+                        <label for="action" class="form-label">Action <span class="text-danger">*</span></label>
+                        <textarea class="form-control" id="action" name="action" rows="3" required></textarea>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="expectedResult" class="form-label">Expected Result <span class="text-danger">*</span></label>
+                        <textarea class="form-control" id="expectedResult" name="expectedResult" rows="3" required></textarea>
+                    </div>
+                    <div class="col-12">
+                        <label for="testInputs" class="form-label">Test Inputs (Optional)</label>
+                        <textarea class="form-control" id="testInputs" name="testInputs" rows="2"></textarea>
+                    </div>
+                    <div class="col-12 text-end">
+                        <button type="submit" class="btn btn-primary">Add Step</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

@@ -129,6 +129,9 @@ function db_field_exists( $db, $field_name, $table_name ) {
 #
 # Revision 1.1.1.1  2005/11/30 23:01:11  gth2
 # importing initial version - gth
-#
 # --------------------------------------------------------
+function db_escape_string( $string ) {
+    return str_replace("'", "''", $string);
+}
+
 ?>

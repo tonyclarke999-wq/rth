@@ -454,11 +454,11 @@ function test_get_filename($test_id) {
 
 
     $q = "SELECT 
-				MAX($f_timestamp), $f_display_name
+				$f_timestamp, $f_display_name
 		  FROM $td_tbl 
 		  INNER JOIN $td_vers_tbl ON $f_td_vers_id = $f_td_id
 		  WHERE $f_test_id = '$test_id' 
-		  GROUP BY $f_timestamp ASC";
+		  ORDER BY $f_timestamp DESC";
     $rs = $db->Execute( $q );
     $row = db_fetch_row( $db, $rs ) ;
 

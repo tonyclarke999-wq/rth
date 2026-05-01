@@ -31,13 +31,13 @@ if( isset($_POST['info_step']) ) {
 	$info_step = "Y";
 }
 
-#added to every session_validate... mysql_real_escape_string(), because it doesnt work for session_validate...(fck-textfield) 
+#added to every session_validate... db_escape_string(), because it doesnt work for session_validate...(fck-textfield) 
 test_update_test_step(  $test_id,
 						$test_step_id,
 						session_validate_form_get_field('location'),
-						mysql_real_escape_string(session_validate_form_get_field('step_action_required', "", session_use_FCKeditor())),
-						mysql_real_escape_string(session_validate_form_get_field('step_input', "", session_use_FCKeditor())),
-						mysql_real_escape_string(session_validate_form_get_field('step_expected_required', "", session_use_FCKeditor())),
+						db_escape_string(session_validate_form_get_field('step_action_required', "", session_use_FCKeditor())),
+						db_escape_string(session_validate_form_get_field('step_input', "", session_use_FCKeditor())),
+						db_escape_string(session_validate_form_get_field('step_expected_required', "", session_use_FCKeditor())),
 						$info_step );
 
 session_validate_form_reset();

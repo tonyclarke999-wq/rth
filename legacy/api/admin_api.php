@@ -239,6 +239,7 @@ function admin_count_tests_in_testset( $testset_id ) {
 function admin_get_max_release_id_from_build_tbl( $project_id ) {
 
 	global $db;
+	$project_id = (int)$project_id;
 	$rel_tbl        = RELEASE_TBL;
 	$f_rel_id       = $rel_tbl .".". RELEASE_ID;
 	$f_project_id	= $rel_tbl .".". PROJECT_ID;
@@ -284,6 +285,7 @@ function admin_get_max_release_id_from_build_tbl( $project_id ) {
 function admin_get_max_build_id( $release_id ) {
 
 	global $db;
+	$release_id = (int)$release_id;
 	$build_tbl 		= BUILD_TBL;
 	$f_build_id		= BUILD_ID;
 	$f_release_id	= BUILD_REL_ID;
@@ -301,6 +303,7 @@ function admin_get_max_build_id( $release_id ) {
 function admin_get_max_testset( $build_id ) {
 
 	global $db;
+	$build_id = (int)$build_id;
 
 	$ts_tbl			= TS_TBL;
 	$f_ts_id		= $ts_tbl .".". TS_ID;
