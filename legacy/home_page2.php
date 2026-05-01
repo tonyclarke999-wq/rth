@@ -201,7 +201,7 @@ if( empty($release_id) ) { # There are no tests associated to the testset or no 
 		print"</tr>". NEWLINE;
 		
 		// testset_get_last_5: function that returns an array with last 5 testsets created
-		$rows_testsets = &testset_get_last_5($project_id); 
+		$rows_testsets = testset_get_last_5($project_id); 
 		
 		
 		if($rows_testsets) {

@@ -40,7 +40,7 @@ $q = "SELECT * FROM $test_tbl WHERE $deleted = 'N' AND $archived = 'N'";
 
 $q = $q . $where_clause . $order_clause;
 
-$rs = &db_query( $db, $q );
+$rs = db_query( $db, $q );
 
 while( $row = db_fetch_row( $db, $rs ) ) {
 

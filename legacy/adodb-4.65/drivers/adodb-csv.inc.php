@@ -104,7 +104,7 @@ class ADODB_csv extends ADOConnection {
 		
 			$rs->databaseType='csv';		
 			$rs->fetchMode = ($this->fetchMode !== false) ?  $this->fetchMode : $ADODB_FETCH_MODE;
-			$rs->connection = &$this;
+			$rs->connection = $this;
 		}
 		return $rs;
 	}
@@ -162,7 +162,7 @@ class ADODB_csv extends ADOConnection {
 			$this->_affectedrows = $rs->affectedrows;
 			$this->_insertid = $rs->insertid;
 			$rs->databaseType='csv';
-			$rs->connection = &$this;
+			$rs->connection = $this;
 		}
 		return $rs;
 	}

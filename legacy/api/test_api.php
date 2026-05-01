@@ -1149,7 +1149,7 @@ function test_get_detail( $test_id ) {
 
 	//print"$q<br>";
 
-    $rs = & db_query( $db, $q);
+    $rs = db_query( $db, $q);
     $row = db_fetch_row( $db, $rs ) ;
 
     return $row;
@@ -1217,7 +1217,7 @@ function test_get_detail( $test_id, $version_id=null ) {
 	}
 	#print"$q<br>";
 
-    $rs = & db_query( $db, $q);
+    $rs = db_query( $db, $q);
     $row = db_fetch_row( $db, $rs ) ;
 
     return $row;
@@ -1332,7 +1332,7 @@ function test_get_uploaded_documents($testid) {
               FROM $f_test_doc_tbl
               WHERE $f_test_id = '$testid'";
 
-    $rs = &db_query( $db, $query );
+    $rs = db_query( $db, $query );
     $num = db_num_rows( $db, $rs );
 
     $row = array();
@@ -1363,7 +1363,7 @@ function test_get_count_uploaded_documents($testid) {
               FROM $f_test_doc_tbl
               WHERE $f_test_id = '$testid'";
 
-    $rs = &db_query( $db, $query );
+    $rs = db_query( $db, $query );
     $num = db_num_rows( $db, $rs );
 
     return $num;
@@ -1403,7 +1403,7 @@ function test_get_uploaded_document_detail($man_test_id) {
              ORDER BY $f_version DESC
              LIMIT 1";
 
-    $rs = & db_query( $db, $query );
+    $rs = db_query( $db, $query );
     $row = db_fetch_row( $db, $rs ) ;
     return $row;
 }
@@ -1546,7 +1546,7 @@ function test_get_percent_req_coverage( $test_id, $req_id ) {
           WHERE $f_test_id = '$test_id'
 		  AND $f_req_id = '$req_id'";
 
-    $rs = &db_query( $db, $q );
+    $rs = db_query( $db, $q );
     $num = db_num_rows( $db, $rs );
 
 	if( $num > 0 ) {
@@ -1627,7 +1627,7 @@ function test_get_test_value($project_id, $field, $blank=false) {
           ORDER BY $field ASC";
     //print"$q<br>";
 
-    $rs = & db_query( $db, $q );
+    $rs = db_query( $db, $q );
     while($row = db_fetch_row( $db, $rs ) ) {
 		array_push($arr_value, $row[$field]);
     }
@@ -1674,7 +1674,7 @@ function test_get_test_type( $project_id, $blank=false ) {
 		 WHERE $f_project_id = '$project_id'
 		 ORDER BY $f_test_type_name";
 
-	$rs = & db_query( $db, $q );
+	$rs = db_query( $db, $q );
 
 	while($row = db_fetch_row( $db, $rs ) ) { ;
 		array_push($test_types, $row[$f_test_type_name]);
@@ -1925,7 +1925,7 @@ function test_get_types( $project_id ) {
           FROM $test_tbl
           ORDER BY $f_test_type ASC";
 
-    $rs = & db_query( $db, $q );
+    $rs = db_query( $db, $q );
     while($row = db_fetch_row( $db, $rs ) ) { ;
 		$arr_value[] = $row[TEST_TESTTYPE];
     }
@@ -2386,7 +2386,7 @@ function test_get_test_step_detail( $test_step_id ) {
 
 		  FROM $ts_tbl
 		  WHERE $f_id = '$test_step_id'";
-	$rs = & db_query( $db, $q );
+	$rs = db_query( $db, $q );
     $row = db_fetch_row( $db, $rs ) ;
 
 	return $row;
@@ -2427,7 +2427,7 @@ function test_get_all_versions( $test_id ) {
 		  $f_signoff_date
 		  FROM $version_tbl
 		  WHERE $f_test_id = '$test_id'";
-	$rs = & db_query( $db, $q );
+	$rs = db_query( $db, $q );
 	$num = db_num_rows( $db, $rs );
 
     $row = array();

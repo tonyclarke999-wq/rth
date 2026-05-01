@@ -1834,7 +1834,7 @@ class GanttScale {
 //---------------
 // CONSTRUCTOR	
     function GanttScale(&$aImg) {
-	$this->iImg = &$aImg;		
+	$this->iImg = $aImg;		
 	$this->iDateLocale = new DateLocale();
 
 	$this->minute = new HeaderProperty();

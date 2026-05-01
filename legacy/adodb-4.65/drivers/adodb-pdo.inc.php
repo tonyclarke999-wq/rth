@@ -120,7 +120,7 @@ class ADODB_pdo extends ADOConnection {
 	
 	function _UpdatePDO()
 	{
-		$d = &$this->_driver;
+		$d = $this->_driver;
 		$this->fmtDate = $d->fmtDate;
 		$this->fmtTimeStamp = $d->fmtTimeStamp;
 		$this->replaceQuote = $d->replaceQuote;

@@ -38,10 +38,10 @@
 
 if ( version_compare( phpversion(), '4.1.0' ) == -1 )
     // prior to 4.1.0, use HTTP_POST_VARS
-    $postArray = &$HTTP_POST_VARS ;
+    $postArray = $HTTP_POST_VARS ;
 else
     // 4.1.0 or later, use $_POST
-    $postArray = &$_POST ;
+    $postArray = $_POST ;
 
 foreach ( $postArray as $sForm => $value )
 {

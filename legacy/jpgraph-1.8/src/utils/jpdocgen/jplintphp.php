@@ -448,7 +448,7 @@ class Parser {
 	    else
 		$parent = "";
 	    $this->iClasses[$this->iClassCnt] = $this->NewClassProp($parent,$name,$aLineNbr,$this->iCurrFileName);
-	    $this->iCurrClass = &$this->iClasses[$this->iClassCnt];
+	    $this->iCurrClass = $this->iClasses[$this->iClassCnt];
 	    $this->iClassCnt++;
 	}
 	else {	

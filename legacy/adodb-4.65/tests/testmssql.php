@@ -24,7 +24,7 @@ include('../tohtml.inc.php');
 
 
 
-$conn = &ADONewConnection("mssql");  // create a connection
+$conn = ADONewConnection("mssql");  // create a connection
 $conn->Connect('127.0.0.1','adodb','natsoft','northwind') or die('Fail');
 
 $conn->debug =1;
@@ -53,7 +53,7 @@ $arr = $conn->getarray($p,array('V%'));
 print_r($arr);
 die();
 
-//$conn = &ADONewConnection("mssql");
+//$conn = ADONewConnection("mssql");
 //$conn->Connect('mangrove','sa','natsoft','ai');
 
 //$conn->Connect('mangrove','sa','natsoft','ai');

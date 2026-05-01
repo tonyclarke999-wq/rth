@@ -61,7 +61,7 @@ class  ADODB_access extends ADODB_odbc {
 		
 		$rs->_has_stupid_odbc_fetch_api_change = $this->_has_stupid_odbc_fetch_api_change;
 		
-		$arr = &$rs->GetArray();
+		$arr = $rs->GetArray();
 		//print_pre($arr);
 		$arr2 = array();
 		for ($i=0; $i < sizeof($arr); $i++) {

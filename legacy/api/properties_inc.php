@@ -9,6 +9,7 @@
 # RTH Configuration Data
 # $RCSfile: properties_inc.php,v $ $Revision: 1.45 $
 # --------------------------------------------------
+date_default_timezone_set('UTC');
 
 # -------------------------------------------
 # This file contains all constants. 
@@ -56,11 +57,11 @@ define('RTH_URL', $rth_url);
 
 
 # Set the database type, host, db_name, and provide login information
-define('DB_TYPE', 'MySQL');
-define('DB_HOST', 'localhost');
+define('DB_TYPE', 'postgres');
+define('DB_HOST', 'db');
 define('DB_NAME', 'rth');
-define('DB_LOGIN', 'root');
-define('DB_PWORD', '');
+define('DB_LOGIN', 'app');
+define('DB_PWORD', 'app');
 
 
 # FCK EDITOR
@@ -394,7 +395,7 @@ define('TEST_RESULTS_TBL', 'testsuiteresults');
 define('TEST_TYPE_TBL', 'testtype');
 define('TEST_VERS_TBL', 'testversion');
 define('TEST_WORK_FLOW_TBL', 'testworkflow');
-define('USER_TBL', 'user' );
+define('USER_TBL', '"user"' );
 define('VERIFY_RESULTS_TBL', 'verifyresults');
 #define('TEST_CASE_RESULTS_TBL', 'testcaseresults');  # not needed
 

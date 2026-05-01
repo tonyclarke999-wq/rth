@@ -33,7 +33,7 @@ function user_get_current_user_name() {
 				FROM $user_tbl
 				WHERE $f_id = '$user_id'";
 
-    $rs = & db_query( $db, $query );
+    $rs = db_query( $db, $query );
     $row = db_fetch_row( $db, $rs ) ;
     return $row;
 }
@@ -95,7 +95,7 @@ function user_get_name_by_username($username) {
               FROM $user_tbl
               WHERE $f_username = '$username'";
 
-    $rs = & db_query( $db, $query );
+    $rs = db_query( $db, $query );
     $row = db_fetch_row( $db, $rs ) ;
     return $row;
 }
@@ -126,7 +126,7 @@ function user_get_usernames_by_project($project_id, $blank=null) {
               AND $f_username != ''
               ORDER BY $f_username ASC";
 
-    $rs = & db_query( $db, $query );
+    $rs = db_query( $db, $query );
 	while($row = db_fetch_row( $db, $rs ) ) { ;
 		array_push($usernames, $row[USER_UNAME]);
 	}
@@ -166,7 +166,7 @@ function user_get_baowners_by_project($project_id, $blank=null) {
               AND $f_username != ''
               ORDER BY $f_username ASC";
 
-    $rs = & db_query( $db, $query );
+    $rs = db_query( $db, $query );
 	while($row = db_fetch_row( $db, $rs ) ) { ;
 		array_push($usernames, $row[USER_UNAME]);
     }
@@ -207,7 +207,7 @@ function user_get_qaowners_by_project($project_id, $blank=null) {
               AND $f_username != ''
               ORDER BY $f_username ASC";
 
-    $rs = & db_query( $db, $query );
+    $rs = db_query( $db, $query );
 	while($row = db_fetch_row( $db, $rs ) ) { ;
 		array_push($usernames, $row[USER_UNAME]);
     }
@@ -1003,7 +1003,7 @@ function user_get_email_by_username( $username ) {
 	$q = "SELECT $f_email
 		  FROM $user_tbl
 		  WHERE $f_username IN ( $users )";
-	$rs = & db_query( $db, $q );
+	$rs = db_query( $db, $q );
 
 	# build the list of email addresses
 	while( 	$row = db_fetch_row( $db, $rs ) ) {
@@ -1049,7 +1049,7 @@ function user_get_email_by_user_id( $user_ids ) {
 	$q = "SELECT $f_email
 		  FROM $user_tbl
 		  WHERE $f_user_id IN ( $ids )";
-	$rs = & db_query( $db, $q );
+	$rs = db_query( $db, $q );
 
 	# build the list of email addresses
 	while( 	$row = db_fetch_row( $db, $rs ) ) {

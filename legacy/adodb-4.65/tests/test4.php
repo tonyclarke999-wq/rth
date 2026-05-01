@@ -33,13 +33,13 @@ FROM ADOXYZ WHERE id = -1";
 // Select an empty record from the database 
 
 
-#$conn = &ADONewConnection("mssql");  // create a connection
+#$conn = ADONewConnection("mssql");  // create a connection
 #$conn->PConnect("", "sa", "natsoft", "northwind"); // connect to MySQL, testdb
 
-$conn = &ADONewConnection("mysql");  // create a connection
+$conn = ADONewConnection("mysql");  // create a connection
 $conn->PConnect("localhost", "root", "", "test"); // connect to MySQL, testdb
 
-//$conn =& ADONewConnection('oci8');
+//$conn = ADONewConnection('oci8');
 //$conn->Connect('','scott','natsoft');
 //$ADODB_FETCH_MODE = ADODB_FETCH_ASSOC;
 

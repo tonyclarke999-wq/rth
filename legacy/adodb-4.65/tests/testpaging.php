@@ -63,7 +63,7 @@ if (empty($driver) or $driver == 'mysql') {
 $db->debug = true;
 
 if (0) {
-$rs = &$db->Execute($sql);
+$rs = $db->Execute($sql);
 include_once('../toexport.inc.php');
 print "<pre>";
 print rs2csv($rs); # return a string

@@ -249,7 +249,7 @@ class ADODB_mysqli extends ADOConnection {
   	function &MetaDatabases()
 	{
 		$query = "SHOW DATABASES";
-		$ret =& $this->Execute($query);
+		$ret = $this->Execute($query);
 		if ($ret && is_object($ret)){
 		   $arr = array();
 			while (!$ret->EOF){
@@ -426,7 +426,7 @@ class ADODB_mysqli extends ADOConnection {
 			$mask = $this->qstr($mask);
 			$this->metaTablesSQL .= " like $mask";
 		}
-		$ret =& ADOConnection::MetaTables($ttype,$showSchema);
+		$ret = ADOConnection::MetaTables($ttype,$showSchema);
 		
 		$this->metaTablesSQL = $save;
 		return $ret;
@@ -563,9 +563,9 @@ class ADODB_mysqli extends ADOConnection {
 		if ($nrows < 0) $nrows = '18446744073709551615';
 		
 		if ($secs)
-			$rs =& $this->CacheExecute($secs, $sql . " LIMIT $offsetStr$nrows" , $inputarr , $arg3);
+			$rs = $this->CacheExecute($secs, $sql . " LIMIT $offsetStr$nrows" , $inputarr , $arg3);
 		else
-			$rs =& $this->Execute($sql . " LIMIT $offsetStr$nrows" , $inputarr , $arg3);
+			$rs = $this->Execute($sql . " LIMIT $offsetStr$nrows" , $inputarr , $arg3);
 			
 		return $rs;
 	}
@@ -598,7 +598,7 @@ class ADODB_mysqli extends ADOConnection {
 				else $a .= 'd';
 			}
 			
-			$fnarr =& array_merge( array($stmt,$a) , $inputarr);
+			$fnarr = array_merge( array($stmt,$a) , $inputarr);
 			$ret = call_user_func_array('mysqli_stmt_bind_param',$fnarr);
 
 			$ret = mysqli_stmt_execute($stmt);
@@ -714,7 +714,7 @@ class ADORecordSet_mysqli extends ADORecordSet{
 	{
 	  if ($this->fetchMode == MYSQLI_ASSOC && !$upper) 
 	    return $this->fields;
-	  $row =& ADORecordSet::GetRowAssoc($upper);
+	  $row = ADORecordSet::GetRowAssoc($upper);
 	  return $row;
 	}
 	

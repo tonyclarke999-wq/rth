@@ -121,7 +121,7 @@ class Spreadsheet_Excel_Reader {
         0x30 => '%1.0f'); //"##0.0E0";
 
     function Spreadsheet_Excel_Reader(){
-        $this->_ole =& new OLERead();
+        $this->_ole = new OLERead();
         $this->setUTFEncoder('iconv');
 
     }
@@ -350,7 +350,7 @@ class Spreadsheet_Excel_Reader {
                                        }
                     /*$continueRecords = array();
                     while ($this->getNextCode() == Type_CONTINUE) {
-                        $continueRecords[] = &$this->nextRecord();
+                        $continueRecords[] = $this->nextRecord();
                     }
                     //echo " 1 Type_SST\n";
                     $this->shareStrings = new SSTRecord($r, $continueRecords);
@@ -463,7 +463,7 @@ class Spreadsheet_Excel_Reader {
             $code = ord($this->data[$pos]) | ord($this->data[$pos+1])<<8;
             $length = ord($this->data[$pos+2]) | ord($this->data[$pos+3])<<8;
 
-            //$r = &$this->nextRecord();
+            //$r = $this->nextRecord();
             //echo "1 Code = ".base_convert($r['code'],10,16)."\n";
         }
 
@@ -497,7 +497,7 @@ class Spreadsheet_Excel_Reader {
 	//echo "code $code $length";
         while($cont) {
             //echo "mem= ".memory_get_usage()."\n";
-//            $r = &$this->file->nextRecord();
+//            $r = $this->file->nextRecord();
             $lowcode = ord($this->data[$spos]);
             if ($lowcode == Spreadsheet_Excel_Reader_Type_EOF) break;
             $code = $lowcode | ord($this->data[$spos+1])<<8;

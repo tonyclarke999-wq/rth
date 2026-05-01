@@ -814,7 +814,7 @@ function session_set_display_options( $element, $options ) {
     # Filter Options
     #
 
-    $s_filter =& $_SESSION['disp1ay_opti0ns'][$element]['filter'];
+    $s_filter = $_SESSION['disp1ay_opti0ns'][$element]['filter'];
 
 	if( isset($s_filter) ) {
 		foreach($s_filter as $key => $value) {
@@ -837,7 +837,7 @@ function session_set_display_options( $element, $options ) {
 	#$s_display_options = $_SESSION['disp1ay_opti0ns'][$element];
 
 	# set page number
-    util_set_page_number(&$_SESSION['disp1ay_opti0ns'][$element]['page_number'], $options);
+    util_set_page_number($_SESSION['disp1ay_opti0ns'][$element]['page_number'], $options);
     if(!empty($options['order_by'])){
     	$_SESSION['disp1ay_opti0ns'][$element]['order_by'] = $options['order_by'];
     }

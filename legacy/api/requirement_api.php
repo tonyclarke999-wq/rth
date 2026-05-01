@@ -701,7 +701,7 @@ function requirement_get_detail( $testid) {
               FROM $test_tbl
               WHERE $f_test_id = '$testid'";
 
-    $rs = & db_query( $db, $query );
+    $rs = db_query( $db, $query );
     $row = db_fetch_row( $db, $rs ) ;
     return $row;
 

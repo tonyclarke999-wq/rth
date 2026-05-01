@@ -1011,7 +1011,7 @@ function results_query_test_run_details( $test_run_id ) {
 	    WHERE $f_test_run_id = '$test_run_id'";
 
 	//print"$q<BR>";
-	$rs = &db_query( $db, $q );
+	$rs = db_query( $db, $q );
 	$row = db_fetch_row( $db, $rs ) ;
 
     return $row;

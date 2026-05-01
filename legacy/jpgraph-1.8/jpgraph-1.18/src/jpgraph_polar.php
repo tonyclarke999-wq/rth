@@ -576,7 +576,7 @@ class PolarScale extends LinearScale {
     var $graph;
     function PolarScale($aMax=0,&$graph) {
 	parent::LinearScale(0,$aMax,'x');
-	$this->graph = &$graph;
+	$this->graph = $graph;
     }
 
     function _Translate($v) {
@@ -608,7 +608,7 @@ class PolarLogScale extends LogScale {
     var $graph;
     function PolarLogScale($aMax=1,&$graph) {
 	parent::LogScale(0,$aMax,'x');
-	$this->graph = &$graph;
+	$this->graph = $graph;
 	$this->ticks->SetLabelLogType(LOGLABELS_MAGNITUDE);
 
     }

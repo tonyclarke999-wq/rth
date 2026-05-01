@@ -732,14 +732,14 @@ class Graph {
 	elseif( $cl == 'plotband' )
 	    $this->AddBand($aPlot);
 	else
-	    $this->plots[] = &$aPlot;
+	    $this->plots[] = $aPlot;
     }
 
     // Add plot to second Y-scale
     function AddY2(&$aPlot) {
 	if( $aPlot == null )
 	    JpGraphError::Raise("<b></b> Graph::AddY2() You tried to add a null plot to the graph.");	
-	$this->y2plots[] = &$aPlot;
+	$this->y2plots[] = $aPlot;
     }
 	
     // Add text object to the graph
@@ -748,10 +748,10 @@ class Graph {
 	    JpGraphError::Raise("<b></b> Graph::AddText() You tried to add a null text to the graph.");		
 	if( is_array($aTxt) ) {
 	    for($i=0; $i < count($aTxt); ++$i )
-		$this->texts[]=&$aTxt[$i];
+		$this->texts[]= $aTxt[$i];
 	}
 	else
-	    $this->texts[] = &$aTxt;
+	    $this->texts[] = $aTxt;
     }
 	
     // Add a line object (class PlotLine) to the graph
@@ -760,10 +760,10 @@ class Graph {
 	    JpGraphError::Raise("<b></b> Graph::AddLine() You tried to add a null line to the graph.");		
 	if( is_array($aLine) ) {
 	    for($i=0; $i<count($aLine); ++$i )
-		$this->lines[]=&$aLine[$i];
+		$this->lines[]= $aLine[$i];
 	}
 	else
-	    $this->lines[] = &$aLine;
+	    $this->lines[] = $aLine;
     }
 
     // Add vertical or horizontal band
@@ -772,10 +772,10 @@ class Graph {
 	    JpGraphError::Raise(" Graph::AddBand() You tried to add a null band to the graph.");
 	if( is_array($aBand) ) {
 	    for($i=0; $i<count($aBand); ++$i )
-		$this->bands[] = &$aBand[$i];
+		$this->bands[] = $aBand[$i];
 	}
 	else
-	    $this->bands[] = &$aBand;
+	    $this->bands[] = $aBand;
     }
 
 	
@@ -1994,8 +1994,8 @@ class Grid {
 //---------------
 // CONSTRUCTOR
     function Grid(&$aAxis) {
-	$this->scale = &$aAxis->scale;
-	$this->img = &$aAxis->img;
+	$this->scale = $aAxis->scale;
+	$this->img = $aAxis->img;
     }
 //---------------
 // PUBLIC METHODS
@@ -2108,8 +2108,8 @@ class Axis {
 //---------------
 // CONSTRUCTOR
     function Axis(&$img,&$aScale,$color=array(0,0,0)) {
-	$this->img = &$img;
-	$this->scale = &$aScale;
+	$this->img = $img;
+	$this->scale = $aScale;
 	$this->color = $color;
 	$this->title=new Text("");
 		
@@ -2514,7 +2514,7 @@ class Ticks {
 //---------------
 // CONSTRUCTOR
     function Ticks(&$aScale) {
-	$this->scale=&$aScale;
+	$this->scale= $aScale;
     }
 
 //---------------
@@ -3874,7 +3874,7 @@ class Image {
 	//	foreach($this->obs_list as $o)
 	//		$o[1]->$o[0]($this);
 	for($i=0; $i < count($this->obs_list); ++$i) {
-	    $obj = & $this->obs_list[$i][1];
+	    $obj = $this->obs_list[$i][1];
 	    $method = $this->obs_list[$i][0];
 	    $obj->$method($this);
 	}
@@ -5117,7 +5117,7 @@ class ImgStreamCache {
     //---------------
     // CONSTRUCTOR
     function ImgStreamCache(&$aImg, $aCacheDir=CACHE_DIR) {
-	$this->img = &$aImg;
+	$this->img = $aImg;
 	$this->cache_dir = $aCacheDir;
     }
 

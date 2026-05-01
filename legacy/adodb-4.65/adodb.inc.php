@@ -1,4 +1,4 @@
-<?php 
+ï»¿<?php 
 /*
  * Set tabs to 4 for best viewing.
  * 
@@ -385,7 +385,7 @@
 	
 	function Time()
 	{
-		$rs =& $this->_Execute("select $this->sysTimeStamp");
+		$rs = $this->_Execute("select $this->sysTimeStamp");
 		if ($rs && !$rs->EOF) return $this->UnixTimeStamp(reset($rs->fields));
 		
 		return false;
@@ -625,7 +625,7 @@
 	*/
 	function &Query($sql, $inputarr=false)
 	{
-		$rs = &$this->Execute($sql, $inputarr);
+		$rs = $this->Execute($sql, $inputarr);
 		if (!$rs && defined('ADODB_PEAR')) return ADODB_PEAR_Error();
 		return $rs;
 	}
@@ -636,7 +636,7 @@
 	*/
 	function &LimitQuery($sql, $offset, $count, $params=false)
 	{
-		$rs = &$this->SelectLimit($sql, $count, $offset, $params); 
+		$rs = $this->SelectLimit($sql, $count, $offset, $params); 
 		if (!$rs && defined('ADODB_PEAR')) return ADODB_PEAR_Error();
 		return $rs;
 	}
@@ -794,7 +794,7 @@
 	{
 		if ($this->fnExecute) {
 			$fn = $this->fnExecute;
-			$ret =& $fn($this,$sql,$inputarr);
+			$ret = $fn($this,$sql,$inputarr);
 			if (isset($ret)) return $ret;
 		}
 		if ($inputarr) {
@@ -833,7 +833,7 @@
 					} else if ($i != sizeof($sqlarr))	
 						ADOConnection::outp( "Input array does not match ?: ".htmlspecialchars($sql));
 		
-					$ret =& $this->_Execute($sql);
+					$ret = $this->_Execute($sql);
 					if (!$ret) return $ret;
 				}	
 			} else {
@@ -844,15 +844,15 @@
 						$stmt = $sql;
 						
 					foreach($inputarr as $arr) {
-						$ret =& $this->_Execute($stmt,$arr);
+						$ret = $this->_Execute($stmt,$arr);
 						if (!$ret) return $ret;
 					}
 				} else {
-					$ret =& $this->_Execute($sql,$inputarr);
+					$ret = $this->_Execute($sql,$inputarr);
 				}
 			}
 		} else {
-			$ret =& $this->_Execute($sql,false);
+			$ret = $this->_Execute($sql,false);
 		}
 
 		return $ret;
@@ -885,14 +885,14 @@
 		} 
 		
 		if ($this->_queryID === true) { // return simplified recordset for inserts/updates/deletes with lower overhead
-			$rs =& new ADORecordSet_empty();
+			$rs = new ADORecordSet_empty();
 			return $rs;
 		}
 		
 		// return real recordset from select statement
 		$rsclass = $this->rsPrefix.$this->databaseType;
 		$rs = new $rsclass($this->_queryID,$this->fetchMode);
-		$rs->connection = &$this; // Pablo suggestion
+		$rs->connection = $this; // Pablo suggestion
 		$rs->Init();
 		if (is_array($sql)) $rs->sql = $sql[0];
 		else $rs->sql = $sql;
@@ -900,7 +900,7 @@
 		global $ADODB_COUNTRECS;
 			if ($ADODB_COUNTRECS) {
 				if (!$rs->EOF) { 
-					$rs = &$this->_rs2rs($rs,-1,-1,!is_array($sql));
+					$rs = $this->_rs2rs($rs,-1,-1,!is_array($sql));
 					$rs->_queryID = $this->_queryID;
 				} else
 					$rs->_numOfRows = 0;
@@ -1045,7 +1045,7 @@
 	{
 	// owner not used in base class - see oci8
 		$p = array();
-		$objs =& $this->MetaColumns($table);
+		$objs = $this->MetaColumns($table);
 		if ($objs) {
 			foreach($objs as $v) {
 				if (!empty($v->primary_key))
@@ -1111,9 +1111,9 @@
 						'/(^\s*select\s+(distinctrow|distinct)?)/i','\\1 '.$this->hasTop.' '.$nrows.' ',$sql);
 
 						if ($secs2cache>0) {
-							$ret =& $this->CacheExecute($secs2cache, $sql,$inputarr);
+							$ret = $this->CacheExecute($secs2cache, $sql,$inputarr);
 						} else {
-							$ret =& $this->Execute($sql,$inputarr);
+							$ret = $this->Execute($sql,$inputarr);
 						}
 						return $ret; // PHP5 fix
 					} else if ($ismssql){
@@ -1143,15 +1143,15 @@
 		$ADODB_COUNTRECS = false;
 			
 		if ($offset>0){
-			if ($secs2cache>0) $rs = &$this->CacheExecute($secs2cache,$sql,$inputarr);
-			else $rs = &$this->Execute($sql,$inputarr);
+			if ($secs2cache>0) $rs = $this->CacheExecute($secs2cache,$sql,$inputarr);
+			else $rs = $this->Execute($sql,$inputarr);
 		} else {
-			if ($secs2cache>0) $rs = &$this->CacheExecute($secs2cache,$sql,$inputarr);
-			else $rs = &$this->Execute($sql,$inputarr);
+			if ($secs2cache>0) $rs = $this->CacheExecute($secs2cache,$sql,$inputarr);
+			else $rs = $this->Execute($sql,$inputarr);
 		}
 		$ADODB_COUNTRECS = $savec;
 		if ($rs && !$rs->EOF) {
-			$rs =& $this->_rs2rs($rs,$nrows,$offset);
+			$rs = $this->_rs2rs($rs,$nrows,$offset);
 		}
 		//print_r($rs);
 		return $rs;
@@ -1164,9 +1164,9 @@
 	*/
 	function &SerializableRS(&$rs)
 	{
-		$rs2 =& $this->_rs2rs($rs);
+		$rs2 = $this->_rs2rs($rs);
 		$ignore = false;
-		$rs2->connection =& $ignore;
+		$rs2->connection = $ignore;
 		
 		return $rs2;
 	}
@@ -1189,12 +1189,12 @@
 		}
 		$dbtype = $rs->databaseType;
 		if (!$dbtype) {
-			$rs = &$rs;  // required to prevent crashing in 4.2.1, but does not happen in 4.3.1 -- why ?
+			$rs = $rs;  // required to prevent crashing in 4.2.1, but does not happen in 4.3.1 -- why ?
 			return $rs;
 		}
 		if (($dbtype == 'array' || $dbtype == 'csv') && $nrows == -1 && $offset == -1) {
 			$rs->MoveFirst();
-			$rs = &$rs; // required to prevent crashing in 4.2.1, but does not happen in 4.3.1-- why ?
+			$rs = $rs; // required to prevent crashing in 4.2.1, but does not happen in 4.3.1-- why ?
 			return $rs;
 		}
 		$flds = array();
@@ -1202,14 +1202,14 @@
 			$flds[] = $rs->FetchField($i);
 		}
 
-		$arr =& $rs->GetArrayLimit($nrows,$offset);
+		$arr = $rs->GetArrayLimit($nrows,$offset);
 		//print_r($arr);
 		if ($close) $rs->Close();
 		
 		$arrayClass = $this->arrayClass;
 		
 		$rs2 = new $arrayClass();
-		$rs2->connection = &$this;
+		$rs2->connection = $this;
 		$rs2->sql = $rs->sql;
 		$rs2->dataProvider = $this->dataProvider;
 		$rs2->InitArrayFields($arr,$flds);
@@ -1222,18 +1222,18 @@
 	*/
 	function &GetAll($sql, $inputarr=false)
 	{
-		$arr =& $this->GetArray($sql,$inputarr);
+		$arr = $this->GetArray($sql,$inputarr);
 		return $arr;
 	}
 	
 	function &GetAssoc($sql, $inputarr=false,$force_array = false, $first2cols = false)
 	{
-		$rs =& $this->Execute($sql, $inputarr);
+		$rs = $this->Execute($sql, $inputarr);
 		if (!$rs) {
 			$false = false;
 			return $false;
 		}
-		$arr =& $rs->GetAssoc($force_array,$first2cols);
+		$arr = $rs->GetAssoc($force_array,$first2cols);
 		return $arr;
 	}
 	
@@ -1243,12 +1243,12 @@
 			$first2cols = $force_array;
 			$force_array = $inputarr;
 		}
-		$rs =& $this->CacheExecute($secs2cache, $sql, $inputarr);
+		$rs = $this->CacheExecute($secs2cache, $sql, $inputarr);
 		if (!$rs) {
 			$false = false;
 			return $false;
 		}
-		$arr =& $rs->GetAssoc($force_array,$first2cols);
+		$arr = $rs->GetAssoc($force_array,$first2cols);
 		return $arr;
 	}
 	
@@ -1266,7 +1266,7 @@
 		$ADODB_COUNTRECS = false;
 		
 		$ret = false;
-		$rs = &$this->Execute($sql,$inputarr);
+		$rs = $this->Execute($sql,$inputarr);
 		if ($rs) {	
 			if (!$rs->EOF) $ret = reset($rs->fields);
 			$rs->Close();
@@ -1278,7 +1278,7 @@
 	function CacheGetOne($secs2cache,$sql=false,$inputarr=false)
 	{
 		$ret = false;
-		$rs = &$this->CacheExecute($secs2cache,$sql,$inputarr);
+		$rs = $this->CacheExecute($secs2cache,$sql,$inputarr);
 		if ($rs) {		
 			if (!$rs->EOF) $ret = reset($rs->fields);
 			$rs->Close();
@@ -1290,7 +1290,7 @@
 	function GetCol($sql, $inputarr = false, $trim = false)
 	{
 	  	$rv = false;
-	  	$rs = &$this->Execute($sql, $inputarr);
+	  	$rs = $this->Execute($sql, $inputarr);
 	  	if ($rs) {
 			$rv = array();
 	   		if ($trim) {
@@ -1312,7 +1312,7 @@
 	function CacheGetCol($secs, $sql = false, $inputarr = false,$trim=false)
 	{
 	  	$rv = false;
-	  	$rs = &$this->CacheExecute($secs, $sql, $inputarr);
+	  	$rs = $this->CacheExecute($secs, $sql, $inputarr);
 	  	if ($rs) {
 			if ($trim) {
 				while (!$rs->EOF) {
@@ -1355,7 +1355,7 @@
 		
 		$savec = $ADODB_COUNTRECS;
 		$ADODB_COUNTRECS = false;
-		$rs =& $this->Execute($sql,$inputarr);
+		$rs = $this->Execute($sql,$inputarr);
 		$ADODB_COUNTRECS = $savec;
 		if (!$rs) 
 			if (defined('ADODB_PEAR')) return ADODB_PEAR_Error();
@@ -1363,7 +1363,7 @@
 				$false = false;
 				return $false;
 			}
-		$arr =& $rs->GetArray();
+		$arr = $rs->GetArray();
 		$rs->Close();
 		return $arr;
 	}
@@ -1379,7 +1379,7 @@
 		
 		$savec = $ADODB_COUNTRECS;
 		$ADODB_COUNTRECS = false;
-		$rs =& $this->CacheExecute($secs2cache,$sql,$inputarr);
+		$rs = $this->CacheExecute($secs2cache,$sql,$inputarr);
 		$ADODB_COUNTRECS = $savec;
 		
 		if (!$rs) 
@@ -1388,7 +1388,7 @@
 				$false = false;
 				return $false;
 			}
-		$arr =& $rs->GetArray();
+		$arr = $rs->GetArray();
 		$rs->Close();
 		return $arr;
 	}
@@ -1407,7 +1407,7 @@
 		$crecs = $ADODB_COUNTRECS;
 		$ADODB_COUNTRECS = false;
 		
-		$rs =& $this->Execute($sql,$inputarr);
+		$rs = $this->Execute($sql,$inputarr);
 		
 		$ADODB_COUNTRECS = $crecs;
 		if ($rs) {
@@ -1423,7 +1423,7 @@
 	
 	function &CacheGetRow($secs2cache,$sql=false,$inputarr=false)
 	{
-		$rs =& $this->CacheExecute($secs2cache,$sql,$inputarr);
+		$rs = $this->CacheExecute($secs2cache,$sql,$inputarr);
 		if ($rs) {
 			$arr = false;
 			if (!$rs->EOF) $arr = $rs->fields;
@@ -1487,10 +1487,10 @@
 			if ($sql === false) $sql = -1;
 			if ($offset == -1) $offset = false;
 									  // sql,	nrows, offset,inputarr
-			$rs =& $this->SelectLimit($secs2cache,$sql,$nrows,$offset,$this->cacheSecs);
+			$rs = $this->SelectLimit($secs2cache,$sql,$nrows,$offset,$this->cacheSecs);
 		} else {
 			if ($sql === false) ADOConnection::outp( "Warning: \$sql missing from CacheSelectLimit()");
-			$rs =& $this->SelectLimit($sql,$nrows,$offset,$inputarr,$secs2cache);
+			$rs = $this->SelectLimit($sql,$nrows,$offset,$inputarr,$secs2cache);
 		}
 		return $rs;
 	}
@@ -1601,7 +1601,7 @@
 		$err = '';
 		
 		if ($secs2cache > 0){
-			$rs = &csv2rs($md5file,$err,$secs2cache,$this->arrayClass);
+			$rs = csv2rs($md5file,$err,$secs2cache,$this->arrayClass);
 			$this->numCacheHits += 1;
 		} else {
 			$err='Timeout 1';
@@ -1617,11 +1617,11 @@
 				if ($this->debug !== -1) ADOConnection::outp( " $md5file cache failure: $err (see sql below)");
 			}
 			
-			$rs = &$this->Execute($sqlparam,$inputarr);
+			$rs = $this->Execute($sqlparam,$inputarr);
 
 			if ($rs) {
 				$eof = $rs->EOF;
-				$rs = &$this->_rs2rs($rs); // read entire recordset into memory immediately
+				$rs = $this->_rs2rs($rs); // read entire recordset into memory immediately
 				$txt = _rs2serialize($rs,false,$sql); // serialize
 		
 				if (!adodb_write_file($md5file,$txt,$this->debug)) {
@@ -1632,8 +1632,8 @@
 				}
 				if ($rs->EOF && !$eof) {
 					$rs->MoveFirst();
-					//$rs = &csv2rs($md5file,$err);		
-					$rs->connection = &$this; // Pablo suggestion
+					//$rs = csv2rs($md5file,$err);		
+					$rs->connection = $this; // Pablo suggestion
 				}  
 				
 			} else
@@ -1647,7 +1647,7 @@
 				$fn($this, $secs2cache, $sql, $inputarr);
 			}
 		// ok, set cached object found
-			$rs->connection = &$this; // Pablo suggestion
+			$rs->connection = $this; // Pablo suggestion
 			if ($this->debug){ 
 					
 				$inBrowser = isset($_SERVER['HTTP_USER_AGENT']);
@@ -1678,7 +1678,7 @@
 			return false;
 		}
 
-		$rs =& $this->SelectLimit($sql,1);
+		$rs = $this->SelectLimit($sql,1);
 		if (!$rs) return false; // table does not exist
 		$rs->tableName = $table;
 		
@@ -1853,7 +1853,7 @@
 		
 		if (empty($this->_metars)) {
 			$rsclass = $this->rsPrefix.$this->databaseType;
-			$this->_metars =& new $rsclass(false,$this->fetchMode); 
+			$this->_metars = new $rsclass(false,$this->fetchMode); 
 		}
 		
 		return $this->_metars->MetaType($t,$len,$fieldobj);
@@ -1994,7 +1994,7 @@
 			$ADODB_FETCH_MODE = $save; 
 			
 			if ($rs === false) return $false;
-			$arr =& $rs->GetArray();
+			$arr = $rs->GetArray();
 			$arr2 = array();
 			
 			if ($hast = ($ttype && isset($arr[0][1]))) { 
@@ -2109,7 +2109,7 @@
 	 */ 
 	function &MetaColumnNames($table, $numIndexes=false) 
 	{
-		$objarr =& $this->MetaColumns($table);
+		$objarr = $this->MetaColumns($table);
 		if (!is_array($objarr)) {
 			$false = false;
 			return $false;
@@ -2346,7 +2346,7 @@
 	/**
 	* Will select the supplied $page number from a recordset, given that it is paginated in pages of 
 	* $nrows rows per page. It also saves two boolean values saying if the given page is the first 
-	* and/or last one of the recordset. Added by Iván Oliva to provide recordset pagination.
+	* and/or last one of the recordset. Added by IvÃ¡n Oliva to provide recordset pagination.
 	*
 	* See readme.htm#ex8 for an example of usage.
 	*
@@ -2364,8 +2364,8 @@
 	{
 		global $ADODB_INCLUDED_LIB;
 		if (empty($ADODB_INCLUDED_LIB)) include_once(ADODB_DIR.'/adodb-lib.inc.php');
-		if ($this->pageExecuteCountRows) $rs =& _adodb_pageexecute_all_rows($this, $sql, $nrows, $page, $inputarr, $secs2cache);
-		else $rs =& _adodb_pageexecute_no_last_page($this, $sql, $nrows, $page, $inputarr, $secs2cache);
+		if ($this->pageExecuteCountRows) $rs = _adodb_pageexecute_all_rows($this, $sql, $nrows, $page, $inputarr, $secs2cache);
+		else $rs = _adodb_pageexecute_no_last_page($this, $sql, $nrows, $page, $inputarr, $secs2cache);
 		return $rs;
 	}
 	
@@ -2373,7 +2373,7 @@
 	/**
 	* Will select the supplied $page number from a recordset, given that it is paginated in pages of 
 	* $nrows rows per page. It also saves two boolean values saying if the given page is the first 
-	* and/or last one of the recordset. Added by Iván Oliva to provide recordset pagination.
+	* and/or last one of the recordset. Added by IvÃ¡n Oliva to provide recordset pagination.
 	*
 	* @param secs2cache	seconds to cache data, set to 0 to force query
 	* @param sql
@@ -2390,7 +2390,7 @@
 			break;
 		default: $secs2cache = 0; break;
 		}*/
-		$rs =& $this->PageExecute($sql,$nrows,$page,$inputarr,$secs2cache);
+		$rs = $this->PageExecute($sql,$nrows,$page,$inputarr,$secs2cache);
 		return $rs;
 	}
 
@@ -2481,9 +2481,9 @@
 	var $_obj; 				/** Used by FetchObj */
 	var $_names;			/** Used by FetchObj */
 	
-	var $_currentPage = -1;	/** Added by Iván Oliva to implement recordset pagination */
-	var $_atFirstPage = false;	/** Added by Iván Oliva to implement recordset pagination */
-	var $_atLastPage = false;	/** Added by Iván Oliva to implement recordset pagination */
+	var $_currentPage = -1;	/** Added by IvÃ¡n Oliva to implement recordset pagination */
+	var $_atFirstPage = false;	/** Added by IvÃ¡n Oliva to implement recordset pagination */
+	var $_atLastPage = false;	/** Added by IvÃ¡n Oliva to implement recordset pagination */
 	var $_lastPageNo = -1; 
 	var $_maxRecordCount = 0;
 	var $datetime = false;
@@ -2601,7 +2601,7 @@
 	
 	function &GetAll($nRows = -1)
 	{
-		$arr =& $this->GetArray($nRows);
+		$arr = $this->GetArray($nRows);
 		return $arr;
 	}
 	
@@ -2626,7 +2626,7 @@
 	function &GetArrayLimit($nrows,$offset=-1) 
 	{	
 		if ($offset <= 0) {
-			$arr =& $this->GetArray($nrows);
+			$arr = $this->GetArray($nrows);
 			return $arr;
 		} 
 		
@@ -2652,7 +2652,7 @@
 	 */
 	function &GetRows($nRows = -1) 
 	{
-		$arr =& $this->GetArray($nRows);
+		$arr = $this->GetArray($nRows);
 		return $arr;
 	}
 	
@@ -3078,7 +3078,7 @@
 		if ($lnumrows == -1 && $this->connection) {
 			IF ($table) {
 				if ($condition) $condition = " WHERE " . $condition; 
-				$resultrows = &$this->connection->Execute("SELECT COUNT(*) FROM $table $condition");
+				$resultrows = $this->connection->Execute("SELECT COUNT(*) FROM $table $condition");
 				if ($resultrows) $lnumrows = reset($resultrows->fields);
 			}
 		}
@@ -3136,7 +3136,7 @@
 	*/
 	function &FetchObj()
 	{
-		$o =& $this->FetchObject(false);
+		$o = $this->FetchObject(false);
 		return $o;
 	}
 	
@@ -3183,7 +3183,7 @@
 	*/
 	function &FetchNextObj()
 	{
-		$o =& $this->FetchNextObject(false);
+		$o = $this->FetchNextObject(false);
 		return $o;
 	}
 	
@@ -3481,10 +3481,10 @@
 		 */
 		function InitArrayFields(&$array,&$fieldarr)
 		{
-			$this->_array =& $array;
+			$this->_array = $array;
 			$this->_skiprow1= false;
 			if ($fieldarr) {
-				$this->_fieldobjects =& $fieldarr;
+				$this->_fieldobjects = $fieldarr;
 			} 
 			$this->Init();
 		}
@@ -3494,7 +3494,7 @@
 			if ($nRows == -1 && $this->_currentRow <= 0 && !$this->_skiprow1) {
 				return $this->_array;
 			} else {
-				$arr =& ADORecordSet::GetArray($nRows);
+				$arr = ADORecordSet::GetArray($nRows);
 				return $arr;
 			}
 		}
@@ -3644,7 +3644,7 @@
 	 */
 	function &NewADOConnection($db='')
 	{
-		$tmp =& ADONewConnection($db);
+		$tmp = ADONewConnection($db);
 		return $tmp;
 	}
 	
@@ -3829,7 +3829,7 @@
 		$class = "ADODB2_$drivername";
 		$dict = new $class();
 		$dict->dataProvider = $conn->dataProvider;
-		$dict->connection = &$conn;
+		$dict->connection = $conn;
 		$dict->upperName = strtoupper($drivername);
 		$dict->quote = $conn->nameQuote;
 		if (!empty($conn->_connectionID))

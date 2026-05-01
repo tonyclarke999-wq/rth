@@ -21,7 +21,7 @@ $page				= 'login.php';
 if( isset( $_POST['uname'] ) ) {
     $username = $_POST['uname'];
     #added validation, to avoid sql injection
-    if(!preg_match("/^[a-zA-Z0-9\.]+$/", $username))
+    if(!preg_match("/^[a-zA-Z0-9\._]+$/", $username))
 	{
 		error_report_show($page, INVALID_LOGIN);
 	}

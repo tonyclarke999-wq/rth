@@ -960,13 +960,13 @@ class Graph {
 	elseif( $cl == 'iconplot' )
 	    $this->AddIcon($aPlot);
 	else
-	    $this->plots[] = &$aPlot;
+	    $this->plots[] = $aPlot;
     }
 
     function AddIcon(&$aIcon) {
 	if( is_array($aIcon) ) {
 	    for($i=0; $i < count($aIcon); ++$i )
-		$this->iIcons[]=&$aIcon[$i];
+		$this->iIcons[]= $aIcon[$i];
 	}
 	else {
 	    $this->iIcons[] = $aIcon ;
@@ -990,7 +990,7 @@ class Graph {
 	elseif( $cl == 'plotband' )
 	    $this->AddBand($aPlot,true);
 	else
-	    $this->y2plots[] = &$aPlot;
+	    $this->y2plots[] = $aPlot;
     }
 
     // Add plot to second Y-scale
@@ -1007,7 +1007,7 @@ class Graph {
 	if( $cl == 'text' || $cl == 'plotline' || $cl == 'plotband' )
 	  JpGraph::Raise('You can only add standard plots to multiple Y-axis');
 	else
-	    $this->ynplots[$aN][] = &$aPlot;
+	    $this->ynplots[$aN][] = $aPlot;
     }
     
     // Add text object to the graph
@@ -1017,18 +1017,18 @@ class Graph {
 	if( $aToY2 ) {
 	    if( is_array($aTxt) ) {
 		for($i=0; $i < count($aTxt); ++$i )
-		    $this->y2texts[]=&$aTxt[$i];
+		    $this->y2texts[]= $aTxt[$i];
 	    }
 	    else
-		$this->y2texts[] = &$aTxt;
+		$this->y2texts[] = $aTxt;
 	}
 	else {
 	    if( is_array($aTxt) ) {
 		for($i=0; $i < count($aTxt); ++$i )
-		    $this->texts[]=&$aTxt[$i];
+		    $this->texts[]= $aTxt[$i];
 	    }
 	    else
-		$this->texts[] = &$aTxt;
+		$this->texts[] = $aTxt;
 	}
     }
 	
@@ -1040,18 +1040,18 @@ class Graph {
 	if( $aToY2 ) {
  	    if( is_array($aLine) ) {
 		for($i=0; $i < count($aLine); ++$i )
-		    $this->y2lines[]=&$aLine[$i];
+		    $this->y2lines[]= $aLine[$i];
 	    }
 	    else
-		$this->y2lines[] = &$aLine;
+		$this->y2lines[] = $aLine;
 	}
 	else {
  	    if( is_array($aLine) ) {
 		for($i=0; $i < count($aLine); ++$i )
-		    $this->lines[]=&$aLine[$i];
+		    $this->lines[]= $aLine[$i];
 	    }
 	    else
-		$this->lines[] = &$aLine;
+		$this->lines[] = $aLine;
 	}
     }
 
@@ -1063,18 +1063,18 @@ class Graph {
 	if( $aToY2 ) {
 	    if( is_array($aBand) ) {
 		for($i=0; $i < count($aBand); ++$i )
-		    $this->y2bands[] = &$aBand[$i];
+		    $this->y2bands[] = $aBand[$i];
 	    }
 	    else
-		$this->y2bands[] = &$aBand;
+		$this->y2bands[] = $aBand;
 	}
 	else {
 	    if( is_array($aBand) ) {
 		for($i=0; $i < count($aBand); ++$i )
-		    $this->bands[] = &$aBand[$i];
+		    $this->bands[] = $aBand[$i];
 	    }
 	    else
-		$this->bands[] = &$aBand;
+		$this->bands[] = $aBand;
 	}
     }
 
@@ -3525,8 +3525,8 @@ class Grid {
 //---------------
 // CONSTRUCTOR
     function Grid(&$aAxis) {
-	$this->scale = &$aAxis->scale;
-	$this->img = &$aAxis->img;
+	$this->scale = $aAxis->scale;
+	$this->img = $aAxis->img;
     }
 //---------------
 // PUBLIC METHODS
@@ -3688,8 +3688,8 @@ class Axis {
 //---------------
 // CONSTRUCTOR
     function Axis(&$img,&$aScale,$color=array(0,0,0)) {
-	$this->img = &$img;
-	$this->scale = &$aScale;
+	$this->img = $img;
+	$this->scale = $aScale;
 	$this->color = $color;
 	$this->title=new Text("");
 		
@@ -4120,7 +4120,7 @@ class Ticks {
 //---------------
 // CONSTRUCTOR
     function Ticks(&$aScale) {
-	$this->scale=&$aScale;
+	$this->scale= $aScale;
 	$this->precision = -1;
     }
 
@@ -7386,7 +7386,7 @@ class ImgStreamCache {
     //---------------
     // CONSTRUCTOR
     function ImgStreamCache(&$aImg, $aCacheDir=CACHE_DIR) {
-	$this->img = &$aImg;
+	$this->img = $aImg;
 	$this->cache_dir = $aCacheDir;
     }
 

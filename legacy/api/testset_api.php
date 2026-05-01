@@ -436,7 +436,7 @@ function testset_get_details_by_build($build_id, $testset_id, $order_by=null, $o
 		$q .= " ORDER BY $order_by $order_dir";
 	}
 
-	$rs = &db_query( $db, $q );
+	$rs = db_query( $db, $q );
 
 	if( $testset_id != null ) {
 
@@ -488,7 +488,7 @@ function testset_get( $testset_id, $build_id ) {
 				AND $ts_build_id = '$build_id'";
 
 
-	$rs = &db_query( $db, $q );
+	$rs = db_query( $db, $q );
 	$row = db_fetch_row( $db, $rs ) ;
 
     return $row;
@@ -562,7 +562,7 @@ function testset_query_test_details( $testset_id, $test_id ) {
 	     AND $f_ts_id = '$testset_id'
 	     AND $f_test_id = '$test_id'";
 
-	$rs = &db_query( $db, $q );
+	$rs = db_query( $db, $q );
 	$row = db_fetch_row( $db, $rs ) ;
 
     return $row;
@@ -587,7 +587,7 @@ function testset_get_status() {
 
 	$q = "SELECT $status_id, $status_name FROM $ts_status";
 
-	$rs = &db_query( $db, $q );
+	$rs = db_query( $db, $q );
 	$num = db_num_rows( $db, $rs );
 
 	$row = array();
@@ -829,7 +829,7 @@ function testset_get_test_testset_value($project_id, $testset_id, $field, $blank
           ORDER BY $field ASC";
     //print"$q<br>";
 
-    $rs = & db_query( $db, $q );
+    $rs = db_query( $db, $q );
     while($row = db_fetch_row( $db, $rs ) ) { ;
 	array_push($arr_value, $row[$field]);
     }

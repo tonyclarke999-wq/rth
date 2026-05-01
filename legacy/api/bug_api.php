@@ -515,7 +515,7 @@ function bug_get_detail( $bug_id ) {
 
 	# print"$q<br>";
 
-    $rs = & db_query( $db, $q);
+    $rs = db_query( $db, $q);
     $row = db_fetch_row( $db, $rs );
 
     return $row;

@@ -29,7 +29,7 @@ class CanvasScale {
     var $ixmin=0,$ixmax=10,$iymin=0,$iymax=10;
 
     function CanvasScale(&$graph) {
-	$this->g = &$graph;
+	$this->g = $graph;
 	$this->w = $graph->img->width;
 	$this->h = $graph->img->height;
     }
@@ -68,9 +68,9 @@ class Shape {
     var $img,$scale;
 
     function Shape(&$aGraph,&$scale) {
-	$this->img = &$aGraph->img;
+	$this->img = $aGraph->img;
 	$this->img->SetColor('black');
-	$this->scale = &$scale;
+	$this->scale = $scale;
     }
 
     function SetColor($aColor) {

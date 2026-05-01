@@ -593,7 +593,7 @@ class ADORecordSet_ado extends ADORecordSet {
 		@$rs->MoveNext(); // @ needed for some versions of PHP!
 		
 		if ($this->fetchMode & ADODB_FETCH_ASSOC) {
-			$this->fields = &$this->GetRowAssoc(ADODB_ASSOC_CASE);
+			$this->fields = $this->GetRowAssoc(ADODB_ASSOC_CASE);
 		}
 		return true;
 	}

@@ -112,7 +112,7 @@
         $data_array = array();
  
         // rebuild column information  
-        $header =& $xmlrpcval->structmem('header');
+        $header = $xmlrpcval->structmem('header');
         
         $numfields = $header->structmem('fieldcount');
         $numfields = $numfields->scalarval();
@@ -121,9 +121,9 @@
         $sqlstring = $header->structmem('sql');
         $sqlstring = $sqlstring->scalarval();
         
-        $fieldinfo =& $header->structmem('fieldinfo');
+        $fieldinfo = $header->structmem('fieldinfo');
         for ($i = 0; $i < $numfields; $i++) {
-            $temp =& $fieldinfo->arraymem($i);
+            $temp = $fieldinfo->arraymem($i);
             $fld = new ADOFieldObject();
             while (list($key,$value) = $temp->structeach()) {
                 if ($key == "name") $fld->name = $value->scalarval();
@@ -137,12 +137,12 @@
         } // for
 
         // fetch recordset information into php array
-        $body =& $xmlrpcval->structmem('body');
+        $body = $xmlrpcval->structmem('body');
         for ($i = 0; $i < $numrecords; $i++) {
             $data_array[$i]= array();
-            $xmlrpcrs_row =& $body->arraymem($i);
+            $xmlrpcrs_row = $body->arraymem($i);
             for ($j = 0; $j < $numfields; $j++) {
-                $temp =& $xmlrpcrs_row->arraymem($j);
+                $temp = $xmlrpcrs_row->arraymem($j);
                 $data_array[$i][$j] = $temp->scalarval();
             } // for j
         } // for i

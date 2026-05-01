@@ -187,14 +187,14 @@ FROM `nuke_stories` `t1`, `nuke_authors` `t2`, `nuke_stories_cat` `t3`, `nuke_to
 	$t = $db->MetaType('varchar');
 	if ($t != 'C') Err("Bad Metatype for varchar");
 	
-	$rs = &$db->Execute("delete from ADOXYZ"); // some ODBC drivers will fail the drop so we delete
+	$rs = $db->Execute("delete from ADOXYZ"); // some ODBC drivers will fail the drop so we delete
 	if ($rs) {
 		if(! $rs->EOF) print "<b>Error: </b>RecordSet returned by Execute('delete...') should show EOF</p>";
 		$rs->Close();
 	} else print "err=".$db->ErrorMsg();
 
 	print "<p>Test select on empty table, FetchField when EOF, and GetInsertSQL</p>";
-	$rs = &$db->Execute("select id,firstname from ADOXYZ where id=9999");
+	$rs = $db->Execute("select id,firstname from ADOXYZ where id=9999");
 	if ($rs && !$rs->EOF) print "<b>Error: </b>RecordSet returned by Execute(select...') on empty table should show EOF</p>";
 	if ($rs->EOF && (($ox = $rs->FetchField(0)) && !empty($ox->name))) {
 		$record['id'] = 99;
@@ -218,10 +218,10 @@ FROM `nuke_stories` `t1`, `nuke_authors` `t2`, `nuke_stories_cat` `t3`, `nuke_to
 		$rs = $db->Execute("insert into ADOXYZ (id,firstname,lastname,created) values (99,'Should Not','Exist (Commit)',$time)");
 		if ($rs && $db->CommitTrans()) {
 			$rs->Close();
-			$rs = &$db->Execute("select * from ADOXYZ where id=99");
+			$rs = $db->Execute("select * from ADOXYZ where id=99");
 			if ($rs === false || $rs->EOF) {
 				print '<b>Data not saved</b></p>';
-				$rs = &$db->Execute("select * from ADOXYZ where id=99");
+				$rs = $db->Execute("select * from ADOXYZ where id=99");
 				print_r($rs);
 				die();
 			} else print 'OK</p>';
@@ -246,7 +246,7 @@ FROM `nuke_stories` `t1`, `nuke_authors` `t2`, `nuke_stories_cat` `t3`, `nuke_to
 		} else
 			print "<b>Commit failed</b></p>";
 			
-		$rs = &$db->Execute('delete from ADOXYZ where id>50');
+		$rs = $db->Execute('delete from ADOXYZ where id>50');
 		if ($rs) $rs->Close();
 		
 		if ($db->transCnt != 0) Err("Invalid transCnt = $db->transCnt (should be 0)");
@@ -317,7 +317,7 @@ FROM `nuke_stories` `t1`, `nuke_authors` `t2`, `nuke_stories_cat` `t3`, `nuke_to
 		$a = $db->MetaPrimaryKeys('ADOXYZ');
 		var_dump($a);
 	}
-	$rs = &$db->Execute('delete from ADOXYZ');
+	$rs = $db->Execute('delete from ADOXYZ');
 	if ($rs) $rs->Close();
 	
 	$db->debug = false;
@@ -753,7 +753,7 @@ END Adodb;
 		print_r($rs->fields);
 	}
 	if ($db->databaseType !== 'odbc') {
-		$rs = &$db->Execute("select id,firstname,lastname,created,".$db->random." from ADOXYZ order by id");
+		$rs = $db->Execute("select id,firstname,lastname,created,".$db->random." from ADOXYZ order by id");
 		if ($rs) {
 			if ($rs->RecordCount() != 50) {
 				print "<p><b>RecordCount returns ".$rs->RecordCount().", should be 50</b></p>";
@@ -839,7 +839,7 @@ END Adodb;
 	}
 	
 	print "<p>FETCH_MODE = ASSOC: Should get 1, Caroline</p>";
-	$rs = &$db->SelectLimit('select id,firstname from ADOXYZ order by id',2);
+	$rs = $db->SelectLimit('select id,firstname from ADOXYZ order by id',2);
 	if ($rs && !$rs->EOF) {
 		if (ADODB_ASSOC_CASE == 2) {
 			$id = 'ID';
@@ -862,7 +862,7 @@ END Adodb;
 	
 	$ADODB_FETCH_MODE = ADODB_FETCH_NUM;
 	print "<p>FETCH_MODE = NUM: Should get 1, Caroline</p>";
-	$rs = &$db->SelectLimit('select id,firstname from ADOXYZ order by id',1);
+	$rs = $db->SelectLimit('select id,firstname from ADOXYZ order by id',1);
 	if ($rs && !$rs->EOF) {
 		if (isset($rs->fields['id'])) Err("FETCH_NUM has ASSOC fields");
 		if ($rs->fields[0] != 1)  {Err("Error 1"); print_r($rs->fields);};
@@ -875,9 +875,9 @@ END Adodb;
 	
 	$db->debug = false;
 	print "<p>GetRowAssoc Upper: Should get 1, Caroline</p>";
-	$rs = &$db->SelectLimit('select id,firstname from ADOXYZ order by id',1);
+	$rs = $db->SelectLimit('select id,firstname from ADOXYZ order by id',1);
 	if ($rs && !$rs->EOF) {
-		$arr = &$rs->GetRowAssoc();
+		$arr = $rs->GetRowAssoc();
 		if ($arr['ID'] != 1) {Err("Error 1");print_r($arr);};
 		if (trim($arr['FIRSTNAME']) != 'Caroline') {Err("Error 2"); print_r($arr);};
 		$rs->MoveNext();
@@ -885,9 +885,9 @@ END Adodb;
 
 	}
 	print "<p>GetRowAssoc Lower: Should get 1, Caroline</p>";
-	$rs = &$db->SelectLimit('select id,firstname from ADOXYZ order by id',1);
+	$rs = $db->SelectLimit('select id,firstname from ADOXYZ order by id',1);
 	if ($rs && !$rs->EOF) {
-		$arr = &$rs->GetRowAssoc(false);
+		$arr = $rs->GetRowAssoc(false);
 		if ($arr['id'] != 1) {Err("Error 1"); print_r($arr);};
 		if (trim($arr['firstname']) != 'Caroline') {Err("Error 2"); print_r($arr);};
 
@@ -911,7 +911,7 @@ END Adodb;
 	
 	
 	print "<p>SelectLimit Distinct Test 1: Should see Caroline, John and Mary</p>";
-	$rs = &$db->SelectLimit('select distinct * from ADOXYZ order by id',3);
+	$rs = $db->SelectLimit('select distinct * from ADOXYZ order by id',3);
 	
 	
 	if ($rs && !$rs->EOF) {
@@ -927,7 +927,7 @@ END Adodb;
 	} else Err("Failed SelectLimit Test 1");
 	
 	print "<p>SelectLimit Test 2: Should see Mary, George and Mr. Alan</p>";
-	$rs = &$db->SelectLimit('select * from ADOXYZ order by id',3,2);
+	$rs = $db->SelectLimit('select * from ADOXYZ order by id',3,2);
 	if ($rs && !$rs->EOF) {
 		if (trim($rs->fields[1]) != 'Mary') Err("Error 1 - No Mary, instead: ".$rs->fields[1]);
 		$rs->MoveNext();
@@ -943,7 +943,7 @@ END Adodb;
 	print "<p>SelectLimit Test 3: Should see Wai Hun and Steven</p>";
 	$db->debug=1;
 	global $A; $A=1;
-	$rs = &$db->SelectLimit('select * from ADOXYZ order by id',-1,48);
+	$rs = $db->SelectLimit('select * from ADOXYZ order by id',-1,48);
 	$A=0;
 	if ($rs && !$rs->EOF) {
 		if (empty($rs->connection)) print "<b>Connection object missing from recordset</b></br>";
@@ -960,7 +960,7 @@ END Adodb;
 		$db->debug = false;
 	
 	
-	$rs = &$db->Execute("select * from ADOXYZ order by id");
+	$rs = $db->Execute("select * from ADOXYZ order by id");
 	print "<p>Testing Move()</p>";	
 	if (!$rs)Err( "Failed Move SELECT");
 	else {
@@ -1019,10 +1019,10 @@ END Adodb;
 	$ADODB_FETCH_MODE = ADODB_FETCH_ASSOC;
 	if ($db->dataProvider == 'postgres') {
 		$sql = "select ".$db->Concat('cast(firstname as varchar)',$db->qstr(' '),'lastname')." as fullname,id,".$db->sysTimeStamp." as d from ADOXYZ";
-		$rs = &$db->Execute($sql);
+		$rs = $db->Execute($sql);
 	} else {
 		$sql = "select distinct ".$db->Concat('firstname',$db->qstr(' '),'lastname')." as fullname,id,".$db->sysTimeStamp." as d from ADOXYZ";
-		$rs = &$db->Execute($sql);
+		$rs = $db->Execute($sql);
 	}
 	if ($rs) {
 		if (empty($_GET['hide'])) rs2html($rs);
@@ -1033,9 +1033,9 @@ END Adodb;
 	print "<hr>Testing GetArray() ";
 	//$ADODB_FETCH_MODE = ADODB_FETCH_ASSOC;
 	
-	$rs = &$db->Execute("select * from ADOXYZ order by id");
+	$rs = $db->Execute("select * from ADOXYZ order by id");
 	if ($rs) {
-		$arr = &$rs->GetArray(10);
+		$arr = $rs->GetArray(10);
 		if (sizeof($arr) != 10 || trim($arr[1][1]) != 'John' || trim($arr[1][2]) != 'Lim') print $arr[1][1].' '.$arr[1][2]."<b> &nbsp; ERROR</b><br>";
 		else print " OK<BR>";
 	}
@@ -1045,7 +1045,7 @@ END Adodb;
 	echo "Testing error handling, should see illegal column 'x' error=<i>$e ($e2) </i><br>";
 	if (!$e || !$e2) Err("Error handling did not work");
 	print "Testing FetchNextObject for 1 object ";
-	$rs = &$db->Execute("select distinct lastname,firstname from ADOXYZ where firstname='Caroline'");
+	$rs = $db->Execute("select distinct lastname,firstname from ADOXYZ where firstname='Caroline'");
 	$fcnt = 0;
 	if ($rs)
 	while ($o = $rs->FetchNextObject()) {
@@ -1068,7 +1068,7 @@ END Adodb;
 	//$arr = $db->GetArray("select  lastname,firstname from ADOXYZ");
 	//print_r($arr);
 	print "<hr>";
-	$rs =& $db->Execute("select distinct lastname,firstname,created from ADOXYZ");
+	$rs = $db->Execute("select distinct lastname,firstname,created from ADOXYZ");
 	
 	if ($rs) {
 		$arr = $rs->GetAssoc();
@@ -1077,7 +1077,7 @@ END Adodb;
 		else print " OK 1";
 	}
 	
-	$arr = &$db->GetAssoc("select distinct lastname,firstname from ADOXYZ");
+	$arr = $db->GetAssoc("select distinct lastname,firstname from ADOXYZ");
 	if ($arr) {
 		//print_r($arr);
 		if (empty($arr['See']) || trim($arr['See']) != 'Wai Hun') print $arr['See']." &nbsp; <b>ERROR</b><br>";
@@ -1093,24 +1093,24 @@ END Adodb;
 	for ($loop=0; $loop < 1; $loop++) {
 	print "Testing GetMenu() and CacheExecute<BR>";
 	$db->debug = true;
-	$rs = &$db->CacheExecute(4,"select distinct firstname,lastname from ADOXYZ");
+	$rs = $db->CacheExecute(4,"select distinct firstname,lastname from ADOXYZ");
 	
 	
 
 
 	if ($rs) print 'With blanks, Steven selected:'. $rs->GetMenu('menu','Steven').'<BR>'; 
 	else print " Fail<BR>";
-	$rs = &$db->CacheExecute(4,"select distinct firstname,lastname from ADOXYZ");
+	$rs = $db->CacheExecute(4,"select distinct firstname,lastname from ADOXYZ");
 	
 	if ($rs) print ' No blanks, Steven selected: '. $rs->GetMenu('menu','Steven',false).'<BR>';
 	else print " Fail<BR>";
 	
-	$rs = &$db->CacheExecute(4,"select distinct firstname,lastname from ADOXYZ");
+	$rs = $db->CacheExecute(4,"select distinct firstname,lastname from ADOXYZ");
 	if ($rs) print ' Multiple, Alan selected: '. $rs->GetMenu('menu','Alan',false,true).'<BR>';
 	else print " Fail<BR>";
 	print '</p><hr>';
 	
-	$rs = &$db->CacheExecute(4,"select distinct firstname,lastname from ADOXYZ");
+	$rs = $db->CacheExecute(4,"select distinct firstname,lastname from ADOXYZ");
 	if ($rs) {
 		print ' Multiple, Alan and George selected: '. $rs->GetMenu('menu',array('Alan','George'),false,true);
 		if (empty($rs->connection)) print "<b>Connection object missing from recordset</b></br>";
@@ -1123,22 +1123,22 @@ END Adodb;
 	print "<hr>";
 
 	print "Testing GetMenu2() <BR>";
-	$rs = &$db->CacheExecute(4,"select distinct firstname,lastname from ADOXYZ");
+	$rs = $db->CacheExecute(4,"select distinct firstname,lastname from ADOXYZ");
 	if ($rs) print 'With blanks, Steven selected:'. $rs->GetMenu2('menu',('Oey')).'<BR>'; 
 	else print " Fail<BR>";
-	$rs = &$db->CacheExecute(6,"select distinct firstname,lastname from ADOXYZ");
+	$rs = $db->CacheExecute(6,"select distinct firstname,lastname from ADOXYZ");
 	if ($rs) print ' No blanks, Steven selected: '. $rs->GetMenu2('menu',('Oey'),false).'<BR>';
 	else print " Fail<BR>";
 	}
 	echo "<h3>CacheEXecute</h3>";
 
 	$ADODB_FETCH_MODE = ADODB_FETCH_NUM;
-	$rs = &$db->CacheExecute(6,"select distinct firstname,lastname from ADOXYZ");
+	$rs = $db->CacheExecute(6,"select distinct firstname,lastname from ADOXYZ");
 	print_r($rs->fields); echo $rs->fetchMode;echo "<br>";
 	echo $rs->Fields('firstname');
 	
 	$ADODB_FETCH_MODE = ADODB_FETCH_ASSOC;
-	$rs = &$db->CacheExecute(6,"select distinct firstname,lastname from ADOXYZ");
+	$rs = $db->CacheExecute(6,"select distinct firstname,lastname from ADOXYZ");
 	print_r($rs->fields);echo "<br>";
 	echo $rs->Fields('firstname');
 	$db->debug = false;
@@ -1148,26 +1148,26 @@ END Adodb;
 	
 	$sql = 'select * from ADOXYZ where 0=1';
 	echo "<p>**Testing '$sql' (phplens compat 1)</p>";
-	$rs = &$db->Execute($sql);
+	$rs = $db->Execute($sql);
 	if (!$rs) err( "<b>No recordset returned for '$sql'</b>");
 	if (!$rs->FieldCount()) err( "<b>No fields returned for $sql</b>");
 	if (!$rs->FetchField(1)) err( "<b>FetchField failed for $sql</b>");
 	
 	$sql = 'select * from ADOXYZ order by 1';
 	echo "<p>**Testing '$sql' (phplens compat 2)</p>";
-	$rs = &$db->Execute($sql);
+	$rs = $db->Execute($sql);
 	if (!$rs) err( "<b>No recordset returned for '$sql'<br>".$db->ErrorMsg()."</b>");
 	
 	
 	$sql = 'select * from ADOXYZ order by 1,1';
 	echo "<p>**Testing '$sql' (phplens compat 3)</p>";
-	$rs = &$db->Execute($sql);
+	$rs = $db->Execute($sql);
 	if (!$rs) err( "<b>No recordset returned for '$sql'<br>".$db->ErrorMsg()."</b>");
 	
 	
 	// Move
-	$rs1 = &$db->Execute("select id from ADOXYZ where id <= 2 order by 1");
-	$rs2 = &$db->Execute("select id from ADOXYZ where id = 3 or id = 4 order by 1");
+	$rs1 = $db->Execute("select id from ADOXYZ where id <= 2 order by 1");
+	$rs2 = $db->Execute("select id from ADOXYZ where id = 3 or id = 4 order by 1");
 
 	if ($rs1) $rs1->MoveLast();
 	if ($rs2) $rs2->MoveLast();

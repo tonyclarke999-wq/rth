@@ -887,7 +887,7 @@ function admin_get_all_release_names( $project_id, $blank=false ) {
 		FROM $release_tbl
 		WHERE $f_project_id = '$project_id'";
 
-	$rs = & db_query( $db, $q );
+	$rs = db_query( $db, $q );
 
 	while($row = db_fetch_row( $db, $rs ) ) { ;
 		$release_names[$row[RELEASE_ID]] = $row[RELEASE_NAME];

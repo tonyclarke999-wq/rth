@@ -2485,7 +2485,7 @@ function project_get_application_details($project_name, $username) {
 				FROM	$tbl_project
 				WHERE 	$f_proj_name = '$project_name'";
 
-	$rs = &db_query($db, $q);
+	$rs = db_query($db, $q);
     $project_row = db_fetch_row($db, $rs);
 
 

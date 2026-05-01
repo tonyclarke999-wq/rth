@@ -56,8 +56,8 @@ GLOBAL $ADODB_version,$ADODB_FETCH_MODE;
 	$ADODB_COUNTRECS = false;
 	$start = microtime();
 	for ($i=0; $i < $max; $i++) {
-		$rs =& $db->Execute($sql);	
-		$arr =& $rs->GetArray();
+		$rs = $db->Execute($sql);	
+		$arr = $rs->GetArray();
 	   //		 print $arr[0][1];
 	}
 	$end =  microtime();

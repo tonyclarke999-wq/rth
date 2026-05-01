@@ -31,7 +31,7 @@ function release_get_releasenames($project_id){
     		AND $build_release_id = $release_id
     		AND $project_id = $f_project_id" ;
     		
-    $rs = & db_query( $db, $q );
+    $rs = db_query( $db, $q );
     while($row = db_fetch_row( $db, $rs ) ) { 
 		array_push($arr_value, $row[$f_release_name]);
     }
