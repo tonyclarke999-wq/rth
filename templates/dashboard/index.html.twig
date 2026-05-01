@@ -1,0 +1,144 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard: {{ project.name }}{% endblock %}
+
+{% block body %}
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Project Dashboard: {{ project.name }} 📊</h1>
+        <a href="{{ path('app_project_show', {'id': project.id}) }}" class="btn btn-outline-secondary">Back to Details</a>
+    </div>
+
+    <div class="row">
+        <!-- Summary Cards -->
+        <div class="col-md-3 mb-4">
+            <div class="card border-primary shadow-sm h-100">
+                <div class="card-body text-center">
+                    <h5 class="text-primary">Requirements</h5>
+                    <h2 class="display-4 font-weight-bold">{{ project.requirements|length }}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="card border-info shadow-sm h-100">
+                <div class="card-body text-center">
+                    <h5 class="text-info">Test Cases</h5>
+                    <h2 class="display-4 font-weight-bold">{{ project.testCases|length }}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="card border-danger shadow-sm h-100">
+                <div class="card-body text-center">
+                    <h5 class="text-danger">Total Bugs</h5>
+                    <h2 class="display-4 font-weight-bold">{{ project.bugs|length }}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-4">
+            <div class="card border-success shadow-sm h-100">
+                <div class="card-body text-center">
+                    <h5 class="text-success">Test Suites</h5>
+                    <h2 class="display-4 font-weight-bold">{{ project.testSuites|length }}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <!-- Bug Severity Chart -->
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-header bg-white">
+                    <h5 class="mb-0">Bugs by Severity</h5>
+                </div>
+                <div class="card-body">
+                    <canvas id="bugSeverityChart" height="200"></canvas>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Test Case Status Chart -->
+        <div class="col-md-6 mb-4">
+            <div class="card shadow-sm">
+                <div class="card-header bg-white">
+                    <h5 class="mb-0">Test Case Status</h5>
+                </div>
+                <div class="card-body">
+                    <canvas id="testStatusChart" height="200"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts for Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Bug Severity Chart
+        const bugCtx = document.getElementById('bugSeverityChart').getContext('2d');
+        new Chart(bugCtx, {
+            type: 'bar',
+            data: {
+                labels: {{ bugSeverityLabels|json_encode|raw }},
+                datasets: [{
+                    label: 'Number of Bugs',
+                    data: {{ bugSeverityValues|json_encode|raw }},
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.6)',
+                        'rgba(54, 162, 235, 0.6)',
+                        'rgba(255, 206, 86, 0.6)',
+                        'rgba(255, 159, 64, 0.6)',
+                        'rgba(255, 99, 132, 0.6)'
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(255, 159, 64, 1)',
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: { stepSize: 1 }
+                    }
+                }
+            }
+        });
+
+        // Test Status Chart
+        const testCtx = document.getElementById('testStatusChart').getContext('2d');
+        new Chart(testCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Passed', 'Failed', 'In Progress', 'New'],
+                datasets: [{
+                    data: [
+                        {{ testStats['Passed'] }},
+                        {{ testStats['Failed'] }},
+                        {{ testStats['In Progress'] }},
+                        {{ testStats['New'] }}
+                    ],
+                    backgroundColor: [
+                        '#28a745',
+                        '#dc3545',
+                        '#ffc107',
+                        '#6c757d'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                    }
+                }
+            }
+        });
+    </script>
+{% endblock %}

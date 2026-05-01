@@ -1,0 +1,5 @@
+{
+    "php.validate.executablePath": null,
+    "php.suggest.basic": false,
+    "editor.formatOnSave": true
+}

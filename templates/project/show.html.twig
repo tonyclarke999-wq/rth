@@ -1,0 +1,223 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Project: {{ project.name }}{% endblock %}
+
+{% block body %}
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>{{ project.name }} 🚀</h1>
+        <div>
+            <a href="{{ path('app_project_dashboard', {'id': project.id}) }}" class="btn btn-outline-primary me-2">Project Dashboard</a>
+            {% if project.isArchived %}
+                <form action="{{ path('app_project_unarchive', {'id': project.id}) }}" method="post" class="d-inline">
+                    <button type="submit" class="btn btn-outline-success me-2">Restore Project</button>
+                </form>
+            {% else %}
+                <form action="{{ path('app_project_archive', {'id': project.id}) }}" method="post" class="d-inline" onsubmit="return confirm('Are you sure you want to archive this project?')">
+                    <button type="submit" class="btn btn-outline-danger me-2">Archive Project</button>
+                </form>
+            {% endif %}
+            <a href="{{ path('app_project_index') }}" class="btn btn-outline-secondary">Back to List</a>
+        </div>
+    </div>
+
+    <div class="card shadow-sm mb-4">
+        <div class="card-body">
+            <h5 class="card-title">Project Overview</h5>
+            <p class="card-text">{{ project.description|default('No description provided.') }}</p>
+            <p class="text-muted small">Created on {{ project.createdAt|date('Y-m-d H:i') }}</p>
+        </div>
+    </div>
+
+    <ul class="nav nav-tabs mb-4" id="projectTab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="requirements-tab" data-bs-toggle="tab" data-bs-target="#requirements" type="button" role="tab">Requirements</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="test-suites-tab" data-bs-toggle="tab" data-bs-target="#test-suites" type="button" role="tab">Test Suites</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="test-cases-tab" data-bs-toggle="tab" data-bs-target="#test-cases" type="button" role="tab">Test Cases</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link" id="bugs-tab" data-bs-toggle="tab" data-bs-target="#bugs" type="button" role="tab">Bugs</button>
+        </li>
+    </ul>
+
+    <div class="tab-content" id="projectTabContent">
+        <!-- Requirements Tab -->
+        <div class="tab-pane fade show active" id="requirements" role="tabpanel">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h3>Requirements</h3>
+                <div class="d-flex">
+                    <form method="get" class="me-2 d-flex">
+                        <input type="text" name="req_q" class="form-control form-control-sm me-2" placeholder="Search..." value="{{ req_search_query }}">
+                        <button type="submit" class="btn btn-sm btn-outline-secondary">Search</button>
+                    </form>
+                    <a href="{{ path('app_requirement_new', {'project': project.id}) }}" class="btn btn-sm btn-primary">Add Requirement</a>
+                </div>
+            </div>
+            <div class="card shadow-sm">
+                <div class="card-body p-0">
+                    <table class="table table-hover mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th class="ps-3">ID</th>
+                                <th>Name</th>
+                                <th>Status</th>
+                                <th class="text-end pe-3">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for requirement in requirements %}
+                            <tr>
+                                <td class="ps-3">{{ requirement.id }}</td>
+                                <td>{{ requirement.name }}</td>
+                                <td>
+                                    <span class="badge {{ requirement.status == 'Approved' ? 'bg-success' : 'bg-warning' }}">
+                                        {{ requirement.status }}
+                                    </span>
+                                </td>
+                                <td class="text-end pe-3">
+                                    <a href="{{ path('app_requirement_show', {'id': requirement.id}) }}" class="btn btn-sm btn-outline-info">View</a>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="4" class="text-center text-muted py-4">No requirements found.</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Test Suites Tab -->
+        <div class="tab-pane fade" id="test-suites" role="tabpanel">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h3>Test Suites</h3>
+                <a href="{{ path('app_test_suite_new', {'project': project.id}) }}" class="btn btn-sm btn-primary">Add Test Suite</a>
+            </div>
+            <div class="card shadow-sm">
+                <div class="card-body p-0">
+                    <table class="table table-hover mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th class="ps-3">ID</th>
+                                <th>Name</th>
+                                <th>Tests Count</th>
+                                <th class="text-end pe-3">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for suite in project.testSuites %}
+                            <tr>
+                                <td class="ps-3">{{ suite.id }}</td>
+                                <td>{{ suite.name }}</td>
+                                <td>{{ suite.testCases|length }}</td>
+                                <td class="text-end pe-3">
+                                    <a href="#" class="btn btn-sm btn-outline-info">View</a>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="4" class="text-center text-muted py-4">No test suites found.</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- Test Cases Tab -->
+        <div class="tab-pane fade" id="test-cases" role="tabpanel">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h3>Test Cases</h3>
+                <a href="{{ path('app_test_case_new', {'project': project.id}) }}" class="btn btn-sm btn-primary">Add Test Case</a>
+            </div>
+            <div class="card shadow-sm">
+                <div class="card-body p-0">
+                    <table class="table table-hover mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th class="ps-3">ID</th>
+                                <th>Name</th>
+                                <th>Status</th>
+                                <th class="text-end pe-3">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for test in project.testCases %}
+                            <tr>
+                                <td class="ps-3">{{ test.id }}</td>
+                                <td>{{ test.name }}</td>
+                                <td>
+                                    <span class="badge {{ test.status == 'Passed' ? 'bg-success' : 'bg-secondary' }}">
+                                        {{ test.status }}
+                                    </span>
+                                </td>
+                                <td class="text-end pe-3">
+                                    <a href="#" class="btn btn-sm btn-outline-info">View</a>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="4" class="text-center text-muted py-4">No test cases found.</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- Bugs Tab -->
+        <div class="tab-pane fade" id="bugs" role="tabpanel">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h3>Bugs</h3>
+                <div class="d-flex">
+                    <form method="get" class="me-2 d-flex">
+                        <input type="text" name="bug_q" class="form-control form-control-sm me-2" placeholder="Search..." value="{{ bug_search_query }}">
+                        <button type="submit" class="btn btn-sm btn-outline-secondary">Search</button>
+                    </form>
+                    <a href="{{ path('app_bug_new', {'project': project.id}) }}" class="btn btn-sm btn-danger">Report Bug</a>
+                </div>
+            </div>
+            <div class="card shadow-sm">
+                <div class="card-body p-0">
+                    <table class="table table-hover mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th class="ps-3">ID</th>
+                                <th>Summary</th>
+                                <th>Severity</th>
+                                <th>Status</th>
+                                <th class="text-end pe-3">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for bug in bugs %}
+                            <tr>
+                                <td class="ps-3">{{ bug.id }}</td>
+                                <td>{{ bug.summary }}</td>
+                                <td>
+                                    <span class="badge {{ bug.severity == 'Critical' or bug.severity == 'Blocker' ? 'bg-danger' : 'bg-info' }}">
+                                        {{ bug.severity }}
+                                    </span>
+                                </td>
+                                <td>{{ bug.status }}</td>
+                                <td class="text-end pe-3">
+                                    <a href="{{ path('app_bug_show', {'id': bug.id}) }}" class="btn btn-sm btn-outline-info">View</a>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="5" class="text-center text-muted py-4">No bugs reported.</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

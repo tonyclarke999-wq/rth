@@ -1,0 +1,79 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Projects{% endblock %}
+
+{% block body %}
+    {% for label, messages in app.flashes %}
+        {% for message in messages %}
+            <div class="alert alert-{{ label }} alert-dismissible fade show" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        {% endfor %}
+    {% endfor %}
+
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>Projects</h1>
+        <a href="{{ path('app_project_new') }}" class="btn btn-primary">Create New Project</a>
+    </div>
+
+    <div class="mb-4">
+        <form method="get" class="row g-2">
+            <div class="col-auto">
+                <input type="text" name="q" class="form-control" placeholder="Search projects..." value="{{ search_query }}">
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-secondary">Search</button>
+                {% if search_query %}
+                    <a href="{{ path('app_project_index') }}" class="btn btn-link text-decoration-none">Clear</a>
+                {% endif %}
+            </div>
+            <div class="col-auto ms-auto">
+                <div class="form-check form-switch mt-2">
+                    <input class="form-check-input" type="checkbox" id="showArchivedSwitch" 
+                           onchange="window.location.href = '{{ path('app_project_index') }}?show_archived=' + (this.checked ? '1' : '0') + '&q={{ search_query }}'"
+                           {{ show_archived ? 'checked' : '' }}>
+                    <label class="form-check-label" for="showArchivedSwitch">Show Archived</label>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Created At</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for project in projects %}
+                    <tr>
+                        <td>{{ project.id }}</td>
+                        <td>
+                            <a href="{{ path('app_project_show', {'id': project.id}) }}">{{ project.name }}</a>
+                            {% if project.isArchived %}
+                                <span class="badge bg-secondary ms-2">Archived</span>
+                            {% endif %}
+                        </td>
+                        <td>{{ project.description }}</td>
+                        <td>{{ project.createdAt ? project.createdAt|date('Y-m-d H:i') : '' }}</td>
+                        <td>
+                            <a href="{{ path('app_project_show', {'id': project.id}) }}" class="btn btn-sm btn-outline-info">View</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="5" class="text-center text-muted">No projects found.</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

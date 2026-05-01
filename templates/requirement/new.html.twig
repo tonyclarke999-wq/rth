@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Requirement for {{ project.name }}{% endblock %}
+
+{% block body %}
+    <h1>Add Requirement to {{ project.name }}</h1>
+
+    <div class="card shadow-sm mt-4">
+        <div class="card-body">
+            <form method="post">
+                <div class="mb-3">
+                    <label for="name" class="form-label">Requirement Name</label>
+                    <input type="text" id="name" name="name" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="content" class="form-label">Details / Content</label>
+                    <textarea id="content" name="content" class="form-control" rows="5"></textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="status" class="form-label">Status</label>
+                    <select id="status" name="status" class="form-select">
+                        <option value="New">New</option>
+                        <option value="Draft">Draft</option>
+                        <option value="Ready for Review">Ready for Review</option>
+                        <option value="Approved">Approved</option>
+                    </select>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <a href="{{ path('app_project_show', {'id': project.id}) }}" class="btn btn-secondary">Cancel</a>
+                    <button type="submit" class="btn btn-primary">Save Requirement</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

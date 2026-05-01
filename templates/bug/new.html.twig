@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Report Bug for {{ project.name }}{% endblock %}
+
+{% block body %}
+    <h1>Report Bug in {{ project.name }}</h1>
+
+    <div class="card shadow-sm mt-4">
+        <div class="card-body">
+            <form method="post" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="summary" class="form-label">Bug Summary</label>
+                    <input type="text" id="summary" name="summary" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label">Detailed Description / Steps to Reproduce</label>
+                    <textarea id="description" name="description" class="form-control" rows="5"></textarea>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="severity" class="form-label">Severity</label>
+                        <select id="severity" name="severity" class="form-select">
+                            <option value="Low">Low</option>
+                            <option value="Medium" selected>Medium</option>
+                            <option value="High">High</option>
+                            <option value="Critical">Critical</option>
+                            <option value="Blocker">Blocker</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="priority" class="form-label">Priority</label>
+                        <select id="priority" name="priority" class="form-select">
+                            <option value="Low">Low</option>
+                            <option value="Medium" selected>Medium</option>
+                            <option value="High">High</option>
+                            <option value="Urgent">Urgent</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="requirement" class="form-label">Linked Requirement (Optional)</label>
+                        <select id="requirement" name="requirement" class="form-select">
+                            <option value="">-- None --</option>
+                            {% for req in requirements %}
+                                <option value="{{ req.id }}">{{ req.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="testCase" class="form-label">Linked Test Case (Optional)</label>
+                        <select id="testCase" name="testCase" class="form-select">
+                            <option value="">-- None --</option>
+                            {% for test in test_cases %}
+                                <option value="{{ test.id }}">{{ test.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="attachments" class="form-label">Attachments (Multiple allowed)</label>
+                    <input type="file" id="attachments" name="attachments[]" class="form-control" multiple>
+                    <div class="form-text">Screenshots, logs, or other relevant files.</div>
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <a href="{{ path('app_project_show', {'id': project.id}) }}" class="btn btn-secondary">Cancel</a>
+                    <button type="submit" class="btn btn-danger">Report Bug</button>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}
