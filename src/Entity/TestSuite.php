@@ -8,18 +8,19 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: TestSuiteRepository::class)]
+#[ORM\Table(name: 'testset')]
 class TestSuite
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
+    #[ORM\Column(name: 'testset_id')]
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'testSuites')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Project $project = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(name: 'testset_name', length: 255)]
     private ?string $name = null;
 
     #[ORM\Column(type: 'text', nullable: true)]

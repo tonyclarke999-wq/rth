@@ -13,7 +13,7 @@ class Requirement
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
+    #[ORM\Column(name: 'reqid')]
     private ?int $id = null;
 
     #[ORM\OneToMany(mappedBy: 'requirement', targetEntity: Attachment::class, orphanRemoval: true)]
@@ -28,7 +28,7 @@ class Requirement
     #[ORM\JoinColumn(nullable: false)]
     private ?Project $project = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(name: 'reqname', length: 255)]
     private ?string $name = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]

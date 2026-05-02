@@ -14,7 +14,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
+    #[ORM\Column(name: 'user_id')]
     private ?int $id = null;
 
     #[ORM\Column(length: 180)]
@@ -32,14 +32,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
-    #[ORM\Column(length: 100)]
+    #[ORM\Column(name: 'first_name', length: 100)]
     private ?string $firstName = null;
 
-    #[ORM\Column(length: 100)]
+    #[ORM\Column(name: 'last_name', length: 100)]
     private ?string $lastName = null;
 
-    #[ORM\Column(length: 180)]
+    #[ORM\Column(name: 'email', length: 180)]
     private ?string $email = null;
+
+    #[ORM\Column(name: 'phone', length: 50, nullable: true)]
+    private ?string $phone = null;
+
+    #[ORM\Column(name: 'user_admin', length: 1)]
+    private ?string $userAdmin = 'N';
+
+    #[ORM\Column(name: 'deleted', length: 1)]
+    private ?string $deleted = 'N';
+
+    #[ORM\Column(name: 'default_project', length: 100, nullable: true)]
+    private ?string $defaultProject = null;
 
     public function getId(): ?int
     {

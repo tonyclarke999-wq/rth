@@ -10,23 +10,23 @@ class TestStep
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
+    #[ORM\Column(name: 'teststepid')]
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'testSteps')]
     #[ORM\JoinColumn(nullable: false)]
     private ?TestCase $testCase = null;
 
-    #[ORM\Column(type: 'integer')]
+    #[ORM\Column(name: 'teststep_number', type: 'integer')]
     private ?int $stepNumber = null;
 
-    #[ORM\Column(type: 'text')]
+    #[ORM\Column(name: 'action', type: 'text')]
     private ?string $action = null;
 
-    #[ORM\Column(type: 'text')]
+    #[ORM\Column(name: 'expected_result', type: 'text')]
     private ?string $expectedResult = null;
 
-    #[ORM\Column(type: 'text', nullable: true)]
+    #[ORM\Column(name: 'inputs', type: 'text', nullable: true)]
     private ?string $testInputs = null;
 
     public function getId(): ?int

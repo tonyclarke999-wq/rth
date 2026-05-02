@@ -14,17 +14,86 @@ class Project
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column]
+    #[ORM\Column(name: 'project_id')]
     private ?int $id = null;
 
-    #[ORM\Column(length: 100)]
+    #[ORM\Column(name: 'project_name', length: 100)]
     private ?string $name = null;
 
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[ORM\Column(name: 'description', type: Types::TEXT, nullable: true)]
     private ?string $description = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    #[ORM\Column(name: 'date_created', type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $createdAt = null;
+
+    #[ORM\Column(name: 'deleted', length: 1)]
+    private ?string $deleted = 'N';
+
+    #[ORM\Column(name: 'status', length: 100, nullable: true)]
+    private ?string $status = 'Stable';
+
+    #[ORM\Column(name: 'db_name', length: 100, nullable: true)]
+    private ?string $dbName = null;
+
+    #[ORM\Column(name: 'req_upload_path', length: 255, nullable: true)]
+    private ?string $reqUploadPath = null;
+
+    #[ORM\Column(name: 'test_upload_path', length: 255, nullable: true)]
+    private ?string $testUploadPath = null;
+
+    #[ORM\Column(name: 'test_run_upload_path', length: 255, nullable: true)]
+    private ?string $testRunUploadPath = null;
+
+    #[ORM\Column(name: 'test_plan_upload_path', length: 255, nullable: true)]
+    private ?string $testPlanUploadPath = null;
+
+    #[ORM\Column(name: 'defect_upload_path', length: 255, nullable: true)]
+    private ?string $defectUploadPath = null;
+
+    #[ORM\Column(name: 'use_files', length: 1, nullable: true)]
+    private ?string $useFiles = 'N';
+
+    #[ORM\Column(name: 'bug_url', length: 255, nullable: true)]
+    private ?string $bugUrl = null;
+
+    #[ORM\Column(name: 'show_testcase', length: 1, nullable: true)]
+    private ?string $showTestCase = 'Y';
+
+    #[ORM\Column(name: 'show_custom_1', length: 1, nullable: true)]
+    private ?string $showCustom1 = 'N';
+
+    #[ORM\Column(name: 'show_custom_2', length: 1, nullable: true)]
+    private ?string $showCustom2 = 'N';
+
+    #[ORM\Column(name: 'show_custom_3', length: 1, nullable: true)]
+    private ?string $showCustom3 = 'N';
+
+    #[ORM\Column(name: 'show_custom_4', length: 1, nullable: true)]
+    private ?string $showCustom4 = 'N';
+
+    #[ORM\Column(name: 'show_custom_5', length: 1, nullable: true)]
+    private ?string $showCustom5 = 'N';
+
+    #[ORM\Column(name: 'show_custom_6', length: 1, nullable: true)]
+    private ?string $showCustom6 = 'N';
+
+    #[ORM\Column(name: 'show_window', length: 1, nullable: true)]
+    private ?string $showWindow = 'N';
+
+    #[ORM\Column(name: 'show_object', length: 1, nullable: true)]
+    private ?string $showObject = 'N';
+
+    #[ORM\Column(name: 'show_memory_stats', length: 1, nullable: true)]
+    private ?string $showMemoryStats = 'N';
+
+    #[ORM\Column(name: 'show_priority', length: 1, nullable: true)]
+    private ?string $showPriority = 'N';
+
+    #[ORM\Column(name: 'show_test_input', length: 1, nullable: true)]
+    private ?string $showTestInput = 'N';
+
+    #[ORM\Column(name: 'test_versions', length: 1, nullable: true)]
+    private ?string $testVersions = 'N';
 
     #[ORM\OneToMany(mappedBy: 'project', targetEntity: Requirement::class, orphanRemoval: true)]
     private Collection $requirements;
@@ -37,9 +106,6 @@ class Project
 
     #[ORM\OneToMany(mappedBy: 'project', targetEntity: Bug::class, orphanRemoval: true)]
     private Collection $bugs;
-
-    #[ORM\Column]
-    private ?bool $isArchived = null;
 
     public function __construct()
     {
