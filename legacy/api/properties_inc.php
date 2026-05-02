@@ -238,13 +238,13 @@ define('LDAP_PROTOCOL','3');
 # Control whether errors of level NOTICE, the lowest level of error,
 #  are displayed to the user.  Default is OFF, but turning it ON may 
 # be useful while debugging. Leave this set to ON while we developing
-define('SHOW_WARNINGS', ON);
+define('SHOW_WARNINGS', OFF);
 
 # --- warning display ---
 # Control whether errors of level WARNING, the middle level of error,
 #  are displayed to the user.  Default is ON.  Turning it OFF may
 #  hide useful information from the user.
-define('SHOW_NOTICES', ON);
+define('SHOW_NOTICES', OFF);
 
 # -------------------------------------------
 # DEFINE EMAIL PROPERTIES

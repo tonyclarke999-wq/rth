@@ -29,6 +29,7 @@ class Attachment
     private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\ManyToOne(inversedBy: 'attachments')]
+    #[ORM\JoinColumn(referencedColumnName: 'reqid', nullable: true)]
     private ?Requirement $requirement = null;
 
     #[ORM\ManyToOne(inversedBy: 'attachments')]

@@ -12,10 +12,10 @@
 include_once"./api/include_api.php";
 
 $logged_in 			= session_getLogged_in();
-$username			= $_POST['uname'];
-$switch_project 	= $_POST['login']['switch_project'];
-$redirect_page		= $_POST['login']['page'];
-$redirect_page_get	= $_POST['login']['get'];
+$username			= isset($_POST['uname']) ? $_POST['uname'] : null;
+$switch_project 	= isset($_POST['login']['switch_project']) ? $_POST['login']['switch_project'] : null;
+$redirect_page		= isset($_POST['login']['page']) ? $_POST['login']['page'] : null;
+$redirect_page_get	= isset($_POST['login']['get']) ? $_POST['login']['get'] : null;
 
 # If user not logged in, then redirect back to the page they tried to login from
 # auth_authenticate_user() will display the login forms

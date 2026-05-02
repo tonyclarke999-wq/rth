@@ -17,10 +17,11 @@ class TestCase
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'testCases')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: false, referencedColumnName: 'project_id')]
     private ?Project $project = null;
 
     #[ORM\ManyToOne(inversedBy: 'testCases')]
+    #[ORM\JoinColumn(referencedColumnName: 'testset_id', nullable: true)]
     private ?TestSuite $testSuite = null;
 
     #[ORM\Column(name: 'testsuitename', length: 255)]

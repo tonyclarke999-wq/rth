@@ -13,9 +13,9 @@
 
 include"./api/include_api.php";
 
-$switch_project 	= $_POST['login']['switch_project'];
-$redirect_page		= $_POST['login']['page'];
-$redirect_page_get	= $_POST['login']['get'];
+$switch_project 	= isset($_POST['login']['switch_project']) ? $_POST['login']['switch_project'] : null;
+$redirect_page		= isset($_POST['login']['page']) ? $_POST['login']['page'] : null;
+$redirect_page_get	= isset($_POST['login']['get']) ? $_POST['login']['get'] : null;
 $page				= 'login.php';
 
 if( isset( $_POST['uname'] ) ) {
@@ -32,8 +32,8 @@ if( isset( $_POST['uname'] ) ) {
 if( isset( $_POST['pword'] ) ) {
     $password = $_POST['pword'];
     #added validation, to avoid sql injection
-    if(!preg_match("/^[a-zA-Z0-9\.\-\*\+\?@_]+$/",$password)){
-		error_report_show( $edit_page, INVALID_LOGIN );
+    	if(!preg_match("/^[a-zA-Z0-9\.\-\*\+\?@_]+$/",$password)){
+		error_report_show( 'login.php', INVALID_LOGIN );
 	}
 } else {
     $password = '';

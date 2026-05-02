@@ -14,7 +14,7 @@ class TestStep
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'testSteps')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: false, referencedColumnName: 'testid')]
     private ?TestCase $testCase = null;
 
     #[ORM\Column(name: 'teststep_number', type: 'integer')]

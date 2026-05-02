@@ -9,7 +9,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ProjectRepository::class)]
-#[ORM\Table(name: '`project`')]
+#[ORM\Table(name: 'project')]
 class Project
 {
     #[ORM\Id]
@@ -94,6 +94,9 @@ class Project
 
     #[ORM\Column(name: 'test_versions', length: 1, nullable: true)]
     private ?string $testVersions = 'N';
+
+    #[ORM\Column(name: 'archive', length: 1, nullable: true)]
+    private ?string $isArchived = 'N';
 
     #[ORM\OneToMany(mappedBy: 'project', targetEntity: Requirement::class, orphanRemoval: true)]
     private Collection $requirements;
@@ -274,12 +277,12 @@ class Project
         return $this;
     }
 
-    public function isArchived(): ?bool
+    public function isArchived(): ?string
     {
         return $this->isArchived;
     }
 
-    public function setIsArchived(bool $isArchived): static
+    public function setIsArchived(?string $isArchived): static
     {
         $this->isArchived = $isArchived;
 
