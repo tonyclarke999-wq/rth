@@ -27,8 +27,7 @@ class ProjectRepository extends ServiceEntityRepository
     public function findActiveProjects(): array
     {
         return $this->createQueryBuilder('p')
-            ->andWhere('p.isArchived = :val')
-            ->setParameter('val', false)
+            ->andWhere("p.isArchived = 'N' OR p.isArchived IS NULL")
             ->orderBy('p.name', 'ASC')
             ->getQuery()
             ->getResult();
@@ -44,8 +43,7 @@ class ProjectRepository extends ServiceEntityRepository
             ->setParameter('query', '%' . $query . '%');
 
         if (!$includeArchived) {
-            $qb->andWhere('p.isArchived = :archived')
-               ->setParameter('archived', false);
+            $qb->andWhere("p.isArchived = 'N' OR p.isArchived IS NULL");
         }
 
         return $qb->orderBy('p.name', 'ASC')

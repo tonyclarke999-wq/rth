@@ -13,7 +13,7 @@ class TestSuite
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(name: 'testset_id')]
+    #[ORM\Column(name: 'testsetid')]
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'testSuites')]

@@ -277,14 +277,18 @@ class Project
         return $this;
     }
 
-    public function isArchived(): ?string
+    public function isArchived(): bool
     {
-        return $this->isArchived;
+        return $this->isArchived === 'Y';
     }
 
-    public function setIsArchived(?string $isArchived): static
+    public function setIsArchived(bool|string|null $isArchived): static
     {
-        $this->isArchived = $isArchived;
+        if (is_bool($isArchived)) {
+            $this->isArchived = $isArchived ? 'Y' : 'N';
+        } else {
+            $this->isArchived = $isArchived ?: 'N';
+        }
 
         return $this;
     }
